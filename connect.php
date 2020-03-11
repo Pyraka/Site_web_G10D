@@ -1,5 +1,5 @@
-<?php require "templates/header.php"; ?>
 
+<link rel="stylesheet" href="css/inscriptionflexbox.css">
 <form action="verification.php" method="post" name="login">
   <h1>Connexion</h1>
   <input type="text" name="email" placeholder="Adresse Email">

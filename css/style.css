@@ -1,11 +1,3 @@
-label {
-  display: block;
-  margin: 5px 0;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
 
 html
 {
@@ -24,8 +16,10 @@ body
 
 header
 {
-	height: 100px;
-	background-color: #8BACED; 
+	height:100vh;
+
+    background-size: cover;
+	background-position: center;
 }
 
 footer 
@@ -38,9 +32,10 @@ footer
 
 #LogoSite
 {
-	position: relative;
-	top: 0.7em;
+	position: revert;
+	top: 2em;
 	left: 1em;
+	width: 500px;
 }
 
 .inline li
@@ -50,15 +45,15 @@ footer
 
 #LogoHome
 {
-	width: 80px;
-	height: 80px;
+	width:70px;
+	height: 100px;
 	float: left;
 }
 
 .logoMenu
 {
-	width: 20px;
-	height: 20px;
+	width:10px;
+	height: 10px;
 }
 
 .menu
@@ -70,7 +65,7 @@ footer
 #menuPrincipal li
 {
 	position: relative;
-	top: 1.3em;
+	top: 2.3em;
 	left: 0.5em;
 	padding-left: 2em;
 }
@@ -87,23 +82,28 @@ footer
 
 #menuAuthentification li
 {
-	position: relative;
-	top: 1.3em;
-	left: 2em;
-	padding: 0.55em;
-	border: 0.15em solid #2B3087;
-	border-radius: 0.6em;
-	text-align: center;
+	position: center;
+	border: 0.40em solid #2B3087;
+	border-radius: 0.7em;
+	text-align: left;
+	transition: 0.6s;
+	transform: translate(-50%,50%);
 }
 
 #connect
 {
 	color: #2B3087;
+
 }
 
 #connect:hover
 {
-	text-decoration: underline;
+	text-decoration: none;
+	transition: 0.6s ease;
+	background-color: #2B3087 ;
+	color: #8BACED;
+
+
 }
 
 #inscription
@@ -111,13 +111,20 @@ footer
 	background-color: #2B3087;
 	color: #8BACED;
 }
+#inscription a {
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 3px;
+	background-color: inherit;
+	transition:.5s;
 
-#inscription:hover		
-{
-	background-color: #8BACED;
-	color: #2B3087;
-	text-decoration: underline;
 }
+
+#inscription:hover{
+	background-color: ;
+}
+
 
 #menuPrincipal a,#menuAuthentification a
 {
@@ -155,21 +162,7 @@ footer
 	text-decoration: underline;
 }
 
-.ourPhotos
-{
-	margin-left: 14em;
-	margin-right: 14em;
-	margin-top: 3em;
-	display: flex;
-	justify-content: space-around;
-}
 
-.ourPhotos img,figcaption
-{
-	width: 7em;
-	height: 10.5em;
-	text-align: center;
-}
 
 #PresentationMedisys
 {

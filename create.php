@@ -38,38 +38,85 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<?php require "templates/header.php"; ?>
+
 
 <?php if (isset($_POST['submit']) && $statement) { ?>
     > <?php echo $_POST['prenom']; ?> ajouté avec succès.
 <?php } ?>
 
-<h2>S'inscrire</h2>
 
-<form method="post">
-    <label for="prenom">Prenom</label>
-    <input type="text" name="prenom" id="prenom" placeholder="Prénom" required>
-    <label for="nom">Nom</label>
-    <input type="text" name="nom" id="nom" placeholder="Nom" required>
-    <label for="email">Addresse Email</label>
-    <input type="text" name="email" id="email" placeholder="Adresse Email" required>
-    <label for="mdp">Mot de passe</label>
-    <input type="password" name="mdp" id="mdp" placeholder="Mot de passe" required>
-    <label for="mdp_verif">Vérification du mot de passe</label>
-    <input type="password" name="mdp_verif" id="mdp_verif" placeholder="Mot de passe" required>
-    <label for="borndate">Date de naissance</label>
-    <input type="date" name="borndate" id="borndate" placeholder="dd/mm/aa" required>
-    <label for="genre">Genre</label>
-    <input type="radio" name="genre" value="Homme"> Homme
-    <input type="radio" name="genre" value="Femme"> Femme
-    <input type="radio" name="genre" value="Autre"> Autre   
-    <input type="submit" name="submit" value="S'inscrire">
-</form>
-</br>
-<p class="box-register">Vous avez déjà un compte ? <a href="connect.php">Se connecter</a></p>
-</br>
-<a href="index.php">Retour à l'accueil</a>
+<link rel="stylesheet" href="css/inscriptionflexbox.css">
+<div class="background"
+     </div>
+
+<div class="container">
+    <form method="post">
+        <div class="text centre">
+            <h6 class="selection-titre">CREER UN COMPTE</h6>
+
+        </div>
+        <div class="control prenom">
+            <input class="input" type="text" name="prenom" placeholder="Nom" value="" tabindex="2" data-i18n-placeholder autocomplete="Prenom" />
+        </div>
+        <div class="control nom">
+            <input class="input" type="text" name="last_name" placeholder="Prenom" value="" tabindex="3" data-i18n-placeholder autocomplete="Nom" />
+        </div>
+
+        <div class="control email">
+            <input class="input" type="text" name="email" placeholder="Adresse email" value="" tabindex="6" data-i18n-placeholder autocomplete="email" />
+        </div>
+        <div class="control motdepasse">
+            <input class="input" type="password" name="mdp" placeholder="mot de passe" tabindex="7" data-i18n-placeholder autocomplete="nouveau mot de passe" />
+        </div>
+        <div class="control mdpconfirmation">
+            <input class="input" type="password" name="mdpconfirm" placeholder="Confirmer votre mot de passe" tabindex="8" data-i18n-placeholder autocomplete="0" />
+            <p class="password_confirm-tip" data-i18n-text>
+                8 caractéres minimum,une lettre et un caractére.
+            </p>
+        </div>
+
+        <div class="g-recaptcha has-text-centered">
+
+        </div>
+        <div class="controle conditions_generales">
+            <input type="hidden" name="Conditions_generales" value="0" />
+            <input class="input-checkbox" type="checkbox" name="conditions_générales" value="1" />
+            <label class="checkbox-label" tabindex="0"></label>
+
+            <div class="description_prive">
+                <span data-i18n-key="consentemement_prive">J'accepte les conditions générales de Infinite Measures      </div>
+            <div class="clear"></div>
+        </div>
+
+
+        <div class="control">
+            <input class="input-checkbox" type="checkbox" name="opt_in" value="1" />
+            <label class="checkbox-label" tabindex="0"></label>
+
+            <div class="optin-description">
+                <span data-i18n-key="Get Tesla Updates">Mise à jour Infinites Measures: J'accepte de recevoir les nouveautés de la part d'infinite measures</span>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+</div>
+<div class="texte centre">
+    <button class="button create-button" tabindex="0" data-i18n-key="Create Account">Créer un compte</button>
+</div>
+<div class="texte centre connexion">
+    <span data-i18n-text>Vous avez déjà un compte?</span> <a href="connect.php" tabindex="1" data-i18n-text>Connexion</a>
+</div>
+
+
+
+        <a href="index.php">Retour à l'accueil</a>
+
+    </form>
+
+</div>
+
+
 
 <?php "SELECT DATE_FORMAT(date, '%d/%m/%Y') AS date FROM utilisateurs" ?>
 
-<?php require "templates/footer.php"; ?>

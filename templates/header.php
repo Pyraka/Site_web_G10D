@@ -20,33 +20,32 @@
 						<ul class="inline" id="menuPrincipal">
 							<li>
 								<a href="index.php">
-								<img src="images/logoHome.png" class="logoMenu" />
+
 								<span class="centerLogo">Accueil</span></a>
 							</li>
 							<li>
 								<a href="QuiSommesNous.html">
-								<img src="images/logoWhoAreWe.png" class="logoMenu" />
+
 								<span class="centerLogo">Qui sommes-nous?</span></a>
 							</li>
 							<li>
 								<a href="">
-								<img src="images/logoSystem.png" class="logoMenu" />
+
 								<span class="centerLogo">Information système</span></a>
 							</li>
 							<li>
 								<a href="">
-								<img src="images/logoFaq.png" class="logoMenu" />
+
 								<span class="centerLogo">Faq</span></a>
 							</li>
 							<li>
 								<a href="">
-								<img src="images/logoForum.png" class="logoMenu" />
 								<span class="centerLogo">Forum</span></a>
 							</li>
 						</ul>
 						<ul class="inline" id="menuAuthentification">
-							<a href="connect.php"><li id="connect">Se connecter</li></a>
-							<a href="create.php"><li id="inscription">S'inscrire</li></a>
+							<a href="connect.php"><li id="connect"> Connexion</li></a>
+							<a href="create.php"><li id="inscription">Inscription</li></a>
 						</ul>
 					</nav>
 				</div>

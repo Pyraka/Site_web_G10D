@@ -3,10 +3,10 @@
 
 <ul>
   <li>
-    <a href="create.php"><strong>S'inscrire</strong></a> - inscription de l'utilisateur
+    <a href="create.php"><strong>Inscription</strong></a> - inscription de l'utilisateur
   </li>
   <li>
-    <a href="connect.php"><strong>Se connecter</strong></a> - connexion de l'utilisateur
+    <a href="connect.php"><strong>Connexion</strong></a> - connexion de l'utilisateur
   </li>
   <li>
     <a href="read.php"><strong>Chercher</strong></a> - chercher un utilisateur
