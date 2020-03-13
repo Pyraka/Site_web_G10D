@@ -10,19 +10,23 @@ if (isset($_POST['submit'])) {
 
         $connection = new PDO($dsn, $username, $password, $options);
         $sql = "SELECT *
-        FROM utilisateurs
-        WHERE email = :email";
+        FROM user
+        WHERE mail = :mail";
         
         $sql = "SELECT *
-        FROM utilisateurs
-        WHERE mdp = :mdp";
+        FROM user
+        WHERE userPassword = :userPassword";
 
-        $genre=$_POST['email'];
-        $genre=$_POST['mdp'];
+        $genre=$_POST['mail'];
+        $genre=$_POST['userPassword'];
 
         $statement = $connection->prepare($sql);
-        $statement->bindParam(':email', $email, PDO::PARAM_STR);
-        $statement->bindParam(':mdp', $mdp, PDO::PARAM_STR);
+        $statement->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $statement->bindParam(':userPassword', $mdp, PDO::PARAM_STR);
         $statement->execute();
-
-        
+    }
+    catch (Exception $e) {
+        echo 'erreur';
+    }
+}
+?>
