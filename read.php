@@ -39,7 +39,6 @@ if (isset($_POST['submit'])) {
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Prénom</th>
                     <th>Nom</th>
                     <th>Addresse Email</th>
@@ -51,10 +50,9 @@ if (isset($_POST['submit'])) {
             <tbody>
                 <?php foreach ($result as $row) { ?>
                     <tr>
-                        <td><?php echo ($row["idUser"]); ?></td>
-                        <td><?php echo ($row["name"]); ?></td>
-                        <td><?php echo ($row["firstname"]); ?></td>
-                        <td><?php echo ($row["mail"]); ?></td>
+                        <td><?php echo ($row["lastName"]); ?></td>
+                        <td><?php echo ($row["firstName"]); ?></td>
+                        <td><?php echo ($row["email"]); ?></td>
                         <td><?php echo ($row["userPassword"]); ?></td>
                         <td><?php echo ($row['birthDate']); ?></td>
                         <td><?php echo ($row["gender"]); ?></td>
@@ -67,11 +65,13 @@ if (isset($_POST['submit'])) {
 <?php }
 } ?>
 
-<h2>Trouver un utilisateur en fonction de son gender</h2>
+<h2>Trouver un utilisateur en fonction de son genre</h2>
 
 <form method="post">
-    <label for="gender">Genre</label>
-    <input type="text" id="gender" name="gender">
+<label for="gender">Genre</label>
+    <input type="radio" name="gender" value="Homme"> Homme
+    <input type="radio" name="gender" value="Femme"> Femme
+    <input type="radio" name="gender" value="Autre"> Autre
     <input type="submit" name="submit" value="Voir les résultats">
 </form>
 

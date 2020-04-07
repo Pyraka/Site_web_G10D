@@ -15,9 +15,9 @@ if (isset($_POST['submit'])) {
         $connection = new PDO($dsn, $username, $password, $options);
 
         $new_user = array(
-            "firstname" => $_POST['firstname'],
-            "name"  => $_POST['name'],
-            "mail" => $_POST['mail'],
+            "firstName" => $_POST['firstName'],
+            "lastName"  => $_POST['lastName'],
+            "email" => $_POST['email'],
             "userPassword"  => md5($_POST['userPassword']),
             "birthDate"   => $_POST['birthDate'],
             "gender"  => $_POST['gender']
@@ -41,18 +41,18 @@ if (isset($_POST['submit'])) {
 <?php require "templates/header.php"; ?>
 
 <?php if (isset($_POST['submit']) && $statement) { ?>
-    > <?php echo $_POST['firstname']; ?> ajouté avec succès.
+    > <?php echo $_POST['firstName']; ?> ajouté avec succès.
 <?php } ?>
 
 <h2>S'inscrire</h2>
 
 <form method="post">
-    <label for="firstname">Prénom</label>
-    <input type="text" name="firstname" id="firstname" placeholder="Prénom" required>
-    <label for="name">Nom</label>
-    <input type="text" name="name" id="name" placeholder="name" required>
-    <label for="mail">Addresse mail</label>
-    <input type="text" name="mail" id="mail" placeholder="Adresse mail" required>
+    <label for="firstName">Prénom</label>
+    <input type="text" name="firstName" id="firstName" placeholder="Prénom" required>
+    <label for="lastName">Nom</label>
+    <input type="text" name="lastName" id="lastName" placeholder="Nom" required>
+    <label for="email">Addresse email</label>
+    <input type="email" name="email" id="email" placeholder="Adresse email" required>
     <label for="userPassword">Mot de passe</label>
     <input type="password" name="userPassword" id="userPassword" placeholder="Mot de passe" required>
     <label for="mdp_verif">Vérification du mot de passe</label>
