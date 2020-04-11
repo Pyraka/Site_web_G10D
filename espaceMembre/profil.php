@@ -1,9 +1,5 @@
 <?php
-session_start();
- 
-$bdd = new PDO('mysql:host=localhost;dbname=infinite_', 'root', '');
-
-include('cookieConnect.php');
+include "configuration.php";
  
 if(isset($_GET['id']) AND $_GET['id'] > 0) {
    $getid = intval($_GET['id']);

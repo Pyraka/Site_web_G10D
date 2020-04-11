@@ -74,7 +74,7 @@ else
 
 						?>
 						<ul class="inline" id="menuAuthentification">
-							<a href="" id="LogoSite"><img src="images/logoMessagerie.png" id="LogoProfile" /></a>
+							<a href="accueilMessagerie.php" id="LogoSite"><img src="images/logoMessagerie.png" id="LogoProfile" /></a>
 						</ul>
 						<ul class="inline" id="menuAuthentification">
 							<a href="<?php echo 'profil.php?id='.$_SESSION['id']; ?>" id="LogoSite"><img src="images/user.jpg" id="LogoProfile" /></a>

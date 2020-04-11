@@ -1,9 +1,7 @@
+<!-- adresse mail unique dans la base de données-->
+
 <?php
-session_start();
- 
-$bdd = new PDO('mysql:host=localhost;dbname=infinite_', 'root', '');
- 
-include('cookieConnect.php');
+include "configuration.php";
 
 if(isset($_POST['formconnexion'])) {
    $mailconnect = htmlspecialchars($_POST['mailconnect']);

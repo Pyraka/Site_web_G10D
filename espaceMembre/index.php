@@ -1,4 +1,4 @@
-<?php session_start();
+<?php include "configuration.php";
 include "templates/header.php"; ?>
 
 
