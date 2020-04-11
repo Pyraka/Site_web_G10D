@@ -2,7 +2,7 @@
 /*
 Page: connect.php
 */
-session_start(); // à mettre tout en haut du fichier .php, cette fonction propre à PHP servira à maintenir la $_SESSION
+//session_start(); // à mettre tout en haut du fichier .php, cette fonction propre à PHP servira à maintenir la $_SESSION deja dans header
 if(isset($_POST['submit'])) { // si le bouton "Connexion" est appuyé
     require "config.php";
     // on vérifie que le champ "email" n'est pas vide
@@ -32,7 +32,9 @@ if(isset($_POST['submit'])) { // si le bouton "Connexion" est appuyé
                 } else {
                     // on ouvre la session avec $_SESSION:
                     $_SESSION['email'] = $email; // la session peut être appelée différemment et son contenu aussi peut être autre chose que le email
+                    include "templates/header.php";
                     echo "Vous êtes à présent connecté !";
+                    include "templates/footer.php";
                 }
             }
         }

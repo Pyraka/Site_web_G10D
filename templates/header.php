@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+$id_session = session_id() ;
+
+//echo($id_session );
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

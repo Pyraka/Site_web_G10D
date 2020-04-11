@@ -1,27 +1,20 @@
+<?php require "templates/header.php"; ?>
 <?php
-
-/**
- * Use an HTML form to create a new entry in the
- * utilisateurs table.
- *
- */
-
-
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && ($_POST['mdp_verif'])==($_POST['userPassword'])) {
     require "config.php";
     require "common.php";
-
     try {
         $connection = new PDO($dsn, $username, $password, $options);
-
+        
         $new_user = array(
             "firstName" => $_POST['firstName'],
             "lastName"  => $_POST['lastName'],
             "email" => $_POST['email'],
             "userPassword"  => md5($_POST['userPassword']),
             "birthDate"   => $_POST['birthDate'],
-            "gender"  => $_POST['gender']
-        );
+            "gender"  => $_POST['gender'],
+            "age" => age($_POST['birthDate']),
+            "subDate" => date('Y-m-d'));
 
         $sql = sprintf(
             "INSERT INTO %s (%s) values (%s)",
@@ -32,17 +25,18 @@ if (isset($_POST['submit'])) {
 
         $statement = $connection->prepare($sql);
         $statement->execute($new_user);
-    } catch (PDOException $error) {
+
+
+        echo("Bienvenu chez Infinite Measures !");
+        
+    }catch (PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
 }
+else{ 
+    echo("Les mots de passe ne sont pas identiques");
+}
 ?>
-
-<?php require "templates/header.php"; ?>
-
-<?php if (isset($_POST['submit']) && $statement) { ?>
-    > <?php echo $_POST['firstName']; ?> ajouté avec succès.
-<?php } ?>
 
 <h2>S'inscrire</h2>
 
@@ -51,7 +45,7 @@ if (isset($_POST['submit'])) {
     <input type="text" name="firstName" id="firstName" placeholder="Prénom" required>
     <label for="lastName">Nom</label>
     <input type="text" name="lastName" id="lastName" placeholder="Nom" required>
-    <label for="email">Addresse email</label>
+    <label for="email">Adresse email</label>
     <input type="email" name="email" id="email" placeholder="Adresse email" required>
     <label for="userPassword">Mot de passe</label>
     <input type="password" name="userPassword" id="userPassword" placeholder="Mot de passe" required>
@@ -70,6 +64,26 @@ if (isset($_POST['submit'])) {
 </br>
 <a href="index.php">Retour à l'accueil</a>
 
-<?php "SELECT DATE_FORMAT(date, '%d/%m/%Y') AS date FROM user" ?>
 
 <?php require "templates/footer.php"; ?>
+
+
+<?php
+
+// Fonction permettant de calculer l'age de l'utilisateur en fonction de sa date de naissance 
+
+function age($date){
+    $birthYear = date('Y', strtotime($_POST['birthDate']));
+    $birthMonth = date('m', strtotime($_POST['birthDate']));
+    $todayYear = date('Y', strtotime(date('Y')));
+    $todayMonth = date('m', strtotime(date('m')));
+    $age = $todayYear - $birthYear;
+
+    if ( $todayMonth> $birthMonth ){
+        return ($age) ;
+    }
+    else{
+        return($age) - 1;
+    }
+}
+?>
