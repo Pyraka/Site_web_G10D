@@ -2,7 +2,7 @@
 <?php
 $idUser = $_SESSION['id'];
 
-$requser = $bdd->prepare("SELECT DISTINCT idWritter, idReceiver FROM messaging WHERE idWritter = ? OR idReceiver = ? ORDER BY date ASC LIMIT 10"); 
+$requser = $bdd->prepare("SELECT DISTINCT idWritter, idReceiver FROM messaging WHERE idWritter = ? OR idReceiver = ? ORDER BY date DESC"); 
 $requser->execute(array($idUser, $idUser));
 
 $info = $requser->fetchAll();
@@ -62,13 +62,13 @@ function attribueDernierMessage($id){
 	
 
 	if (attribueReceiverOuWritter($id) == "Writter"){
-		$requser = $bdd->prepare("SELECT date, textMessage FROM messaging WHERE idWritter = ?");
-		$requser->execute(array($id));
+		$requser = $bdd->prepare("SELECT date, textMessage FROM messaging WHERE idWritter = ? AND idReceiver = ?");
+		$requser->execute(array($id, $idUser));
 	}
 
 	if (attribueReceiverOuWritter($id) == "Receiver"){
-		$requser = $bdd->prepare("SELECT date, textMessage FROM messaging WHERE idReceiver = ?");
-		$requser->execute(array($id));
+		$requser = $bdd->prepare("SELECT date, textMessage FROM messaging WHERE idReceiver = ? AND idWritter = ?");
+		$requser->execute(array($id, $idUser));
 	}
 
 
@@ -87,7 +87,10 @@ function attribueDernierMessage($id){
 		
 	}
 
-	echo $latestDate, ' : ', $latestMessage;
+	if ($latestDate != '1980-01-01T15:03:01.012345Z'){
+		echo $latestDate, ' : ', $latestMessage;
+	}
+	
 
 	
 
@@ -120,13 +123,16 @@ function attribueReceiverOuWritter($id){
 <body>
 	
 
-	<!-- à faire plus tard avec du js qui cherche en tant réél les utilisateurs selon ce qu'il rentre dans la barre de recherche-->
-	<form method="POST" action="" class="formMessagerie">
-		<input type="text" placeholder="Rechercher dans la messagerie">
-	</form>
+	
+	<div class="barreRechercheMessagerie">
+		<input type="text" placeholder="Rechercher un contact..." class="champRechercheMessagerie" id="champRechercheMessagerie" value="">
+	</div>
+	<div>
+		<div id="result-search"></div>
+	</div>
 
-	<section class="listeContacts">
-		<h2 style="text-align: center;">
+	<section class="linksMessenger">
+		<h2 style="text-align: center; border-bottom-style: solid;">
 			Conversations : <br>
 		</h2>
 		<?php
@@ -134,7 +140,9 @@ function attribueReceiverOuWritter($id){
 
 			?>
 			<br> 
-			<div>
+			
+				
+			<div class="listeContacts" id="listeContacts">
 				<a href=<?php echo "messagerie.php?id=", $idCorresp;?>>
 					<label id="PrenomNomCorresp"> <?php attribuePrenomNomEmail($idCorresp) ?></label>
 					<br>
@@ -152,9 +160,11 @@ function attribueReceiverOuWritter($id){
 
 						attribueDernierMessage($idCorresp); ?>
 					</label>
-					
 				</a>
 			</div>
+					
+				
+			
 			<br>
 
 
@@ -164,6 +174,6 @@ function attribueReceiverOuWritter($id){
 	</section>
 
 
-
+	
 </body>
 </html>

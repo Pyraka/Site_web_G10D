@@ -17,6 +17,12 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/style.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    ﻿<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	    ﻿<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	    ﻿<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	    ﻿<script src="js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<?php include "templates/header.php"; ?>
@@ -59,7 +65,10 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
 			</div>
 		</div>
 		<input type="hidden" id="idUser" value="<?php echo $_SESSION['id'] ?>">
+
+
 		<script src="js/app.js"></script>
+		<script src="js/barreRecherche.js"></script>
 	</body>
 	</html>
 

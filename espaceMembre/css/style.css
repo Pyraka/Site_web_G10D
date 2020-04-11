@@ -274,10 +274,49 @@ button[type="submit"]{
 	
 }
 
-.formMessagerie{
+.barreRechercheMessagerie{
 	display: flex;
 	justify-content: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
+
+.champRechercheMessagerie{
+	width: 20em; 
+	justify-content: center;
+}
+
+#PrenomNomCorresp, #dernierMessage{
+	text-align: center;
+}
+
+
+.listeContacts {
+	border-style: groove;
+}
+
+.linksMessenger a{
+	display: block;
+	text-decoration: none;
+	color: black;
+	width: 100%;
+	height: 100%;
+}
+
+.linksMessenger a:visited{
+	text-decoration: none;
+	color: black;
+}
+
+.linksMessenger a:hover{
+	background-color: #F2F2F2;
+	cursor: default;
+}
+
+.linksMessenger label{
+	margin: 0;
+}
+
 
 
 
