@@ -1,0 +1,61 @@
+/*Style pour ajouter.php*/
+textarea {
+    overflow: auto;
+    outline: none;
+    border: 5px solid #444a88;
+    resize: none;
+    width: 60%;
+    box-shadow: 0 1px 0 0 #5b6288;
+}
+input{
+    width: 50%;
+    background-color: #5b6288;
+    border-radius: 50px;
+
+}
+title{
+    text-align: center;
+}
+td{
+    font-family: sans-serif;
+    border: thin solid;
+    width: 12%;
+    padding: 5px;
+    text-align: center;
+
+}
+table {
+    border: medium solid #6495ed;
+    border-collapse: collapse;
+    width: 50%;
+}
+/*style pour index.php*/
+nav ul{
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+nav li{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    margin: 0px;
+    padding: 0px;
+    border-right: 1px;
+}
+nav ul li a {
+    display:block;
+    float: left;
+    width:100px;
+    background-color:#6495ED;
+    color:black;
+    text-decoration:none;
+    text-align:center;
+    padding:5px;
+    border:2px solid;
+    border-color:#DCDCDC #696969 #696969 #DCDCDC
+
+}
+#titre{
+    text-align: center;
+}
