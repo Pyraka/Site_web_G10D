@@ -1,50 +1,57 @@
-<?php session_start();
-
-/**
- * Use an HTML form to create a new entry in the
- * utilisateurs table.
- *
- */
+<?php include('configuration.php');
 
 
-if (isset($_POST['submit'])) {
-    require "config.php";
-    require "common.php";
+require "templates/header.php"; 
 
+
+
+if (isset($_SESSION['id'])){
+    header("Location: profil.php?id=".$_SESSION['id']);
+}
+if (isset($_POST['submit']) && isset($_POST['firstName']) AND isset($_POST['lastName']) AND isset($_POST['email']) AND isset($_POST['userPassword']) AND isset($_POST['birthDate']) AND isset($_POST['gender']) AND ($_POST['mdp_verif'])==($_POST['userPassword'])) {
+    
     try {
-        $connection = new PDO($dsn, $username, $password, $options);
 
-        $new_user = array(
-            "firstName" => $_POST['firstName'],
-            "lastName"  => $_POST['lastName'],
-            "email" => $_POST['email'],
-            "userPassword"  => md5($_POST['userPassword']),
-            "birthDate"   => $_POST['birthDate'],
-            "gender"  => $_POST['gender']
-        );
+        // on vérifie que l'email n'est pas déjà utilisée
+        $requser = $bdd->prepare("SELECT * FROM user WHERE email = ?");
+        $requser->execute(array($_POST['email']));
 
-        $sql = sprintf(
-            "INSERT INTO %s (%s) values (%s)",
-            "user",
-            implode(", ", array_keys($new_user)),
-            ":" . implode(", :", array_keys($new_user))
-        );
+        $userexist = $requser->rowCount();
+        if($userexist != 0) {
+            echo "Cette adresse email est deja utilisé...";
+        }
 
-        $statement = $connection->prepare($sql);
-        $statement->execute($new_user);
-    } catch (PDOException $error) {
-        echo $sql . "<br>" . $error->getMessage();
+        else{
+
+            // on ajoute s'il n'y a pas deja cette adresse mail dans la bdd
+            $requser1 = $bdd->prepare("INSERT INTO user(firstName, lastName, email, birthDate, gender, userPassword, subDate, age) VALUES(?, ?, ?, ?, ?, ?, NOW(), ?)");
+            $requser1->execute(array($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['birthDate'], $_POST['gender'], md5($_POST['userPassword']), age($_POST['birthDate'])));
+
+            // On refait une requete maintenant que l'utilisateur a été ajouté
+            $requser->execute(array($_POST['email']));
+            $utilisateur = $requser->fetch();
+
+            // on connecte directement l'utilisateur grace aux variables de session
+            $_SESSION['id'] = $utilisateur['idUser'];
+            $_SESSION['email'] = $utilisateur['email'];
+            header("Location: profil.php?id=".$_SESSION['id']);
+
+        }
+
+        
+        
+    }catch (PDOException $error) {
+        echo $error->getMessage();
     }
 }
-?>
-
-<?php require "templates/header.php"; ?>
-
-<?php if (isset($_POST['submit']) && $statement)
-{
-    header("Location: connect.php");
+else{
+    if (isset($_POST['submit'])) {
+        echo("Les mots de passe ne sont pas identiques");
+    }
+    
 }
 ?>
+
 <h2>S'inscrire</h2>
 
 <form method="post">
@@ -52,7 +59,7 @@ if (isset($_POST['submit'])) {
     <input type="text" name="firstName" id="firstName" placeholder="Prénom" required>
     <label for="lastName">Nom</label>
     <input type="text" name="lastName" id="lastName" placeholder="Nom" required>
-    <label for="email">Addresse email</label>
+    <label for="email">Adresse email</label>
     <input type="email" name="email" id="email" placeholder="Adresse email" required>
     <label for="userPassword">Mot de passe</label>
     <input type="password" name="userPassword" id="userPassword" placeholder="Mot de passe" required>
@@ -71,6 +78,26 @@ if (isset($_POST['submit'])) {
 </br>
 <a href="index.php">Retour à l'accueil</a>
 
-<?php "SELECT DATE_FORMAT(date, '%d/%m/%Y') AS date FROM user" ?>
 
 <?php require "templates/footer.php"; ?>
+
+
+<?php
+
+// Fonction permettant de calculer l'age de l'utilisateur en fonction de sa date de naissance 
+
+function age($date){
+    $birthYear = date('Y', strtotime($_POST['birthDate']));
+    $birthMonth = date('m', strtotime($_POST['birthDate']));
+    $todayYear = date('Y', strtotime(date('Y')));
+    $todayMonth = date('m', strtotime(date('m')));
+    $age = $todayYear - $birthYear;
+
+    if ( $todayMonth> $birthMonth ){
+        return ($age) ;
+    }
+    else{
+        return($age) - 1;
+    }
+}
+?>

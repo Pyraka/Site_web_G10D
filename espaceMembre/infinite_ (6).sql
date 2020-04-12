@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 11 avr. 2020 à 22:32
+-- Généré le :  Dim 12 avr. 2020 à 14:02
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `messaging` (
   `idWritter` int(11) NOT NULL,
   `idReceiver` int(11) NOT NULL,
   PRIMARY KEY (`idMessage`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `messaging`
@@ -173,7 +173,9 @@ INSERT INTO `messaging` (`idMessage`, `textMessage`, `date`, `idWritter`, `idRec
 (57, 'encore', '2020-04-11 17:33:52', 10, 5),
 (58, 'edada', '2020-04-11 17:33:57', 10, 5),
 (59, 'adafg', '2020-04-12 00:20:57', 5, 5),
-(60, 'dzada', '2020-04-12 00:21:00', 5, 5);
+(60, 'dzada', '2020-04-12 00:21:00', 5, 5),
+(61, 'salut!', '2020-04-12 16:00:46', 14, 5),
+(62, 'salut zaeaz', '2020-04-12 16:00:59', 14, 12);
 
 -- --------------------------------------------------------
 
@@ -242,19 +244,23 @@ CREATE TABLE IF NOT EXISTS `user` (
   `birthDate` date NOT NULL,
   `gender` varchar(255) NOT NULL,
   `userPassword` text NOT NULL,
+  `subDate` date NOT NULL,
+  `age` int(11) NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`idUser`, `firstName`, `lastName`, `email`, `birthDate`, `gender`, `userPassword`) VALUES
-(5, 'arnaud5', 'Guilhamat5', 'arnaud.guilhamat@sfr.fr', '2020-03-30', 'Homme', '4124bc0a9335c27f086f24ba207a4912'),
-(6, 'arnaud6', 'Guilhamat6', 'arnaud.guilhamat@isep.fr', '2020-03-30', 'Autre', '4124bc0a9335c27f086f24ba207a4912'),
-(7, 'arnaud7', 'Guilhamat7', 'guilhamat.arnaud@gmail.com', '2020-04-01', 'Homme', '4124bc0a9335c27f086f24ba207a4912'),
-(10, 'arnaud10', 'Guilhamat8', 'a.gui@makl.co', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912'),
-(11, 'jeanb', 'dadaa', 'j.dad@g.m', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912');
+INSERT INTO `user` (`idUser`, `firstName`, `lastName`, `email`, `birthDate`, `gender`, `userPassword`, `subDate`, `age`) VALUES
+(5, 'arnaud5', 'Guilhamat5', 'arnaud.guilhamat@sfr.fr', '2020-03-30', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
+(6, 'arnaud6', 'Guilhamat6', 'arnaud.guilhamat@isep.fr', '2020-03-30', 'Autre', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
+(7, 'arnaud7', 'Guilhamat7', 'guilhamat.arnaud@gmail.com', '2020-04-01', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
+(10, 'arnaud10', 'Guilhamat8', 'a.gui@makl.co', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
+(11, 'jeanb', 'dadaa', 'j.dad@g.m', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
+(12, 'arnaud', 'Guilhamat', 'zaza.zaz@da.com', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', -1),
+(13, 'arnaud', 'Guilhamat', 'grezq@afa.f', '2009-12-28', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', 10);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
