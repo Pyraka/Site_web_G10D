@@ -13,10 +13,13 @@ catch(Exception $e)
 
 
 if(isset($_POST['delete'])){
-    $suppr="";
-    foreach ($_POST['delete'] as $idQuestion){
-        mysqli_query($bdd,'DELETE FROM faq WHERE idQuestion =$idQuestion');
-        $suppr=$idQuestion
 
+    foreach ($_POST['delete'] as $key) {
+        $requser = $bdd->prepare("UPDATE faq SET isDeleted = 1 WHERE idQuestion = ?"); 
+        $requser->execute(array($key));
+
+        // TODO faire la requete pour update la table deletefaq
     }
+
+    
 }
