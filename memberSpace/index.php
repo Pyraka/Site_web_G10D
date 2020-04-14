@@ -1,5 +1,6 @@
+<?php include "configuration.php";
+include "templates/header.php"; ?>
 
-    <?php include "templates/header.php"; ?>
 
 <ul>
   <li>

@@ -1,4 +1,4 @@
-<?php
+<?php require('configuration.php');
 
 use function PHPSTORM_META\type;
 
@@ -12,19 +12,18 @@ setlocale (LC_TIME, 'fr_FR');
 
 if (isset($_POST['submit']) && isset ($_POST['gender'])) {
     try {
-        require "config.php";
-        require "common.php";
+        
 
-        $connection = new PDO($dsn, $username, $password, $options);
+        
 
         $sql = "SELECT * FROM user WHERE gender = :gender AND age =:age";
 
         $gender = $_POST['gender'];
         $age = $_POST['age']; //type String ????
 
-        echo(gettype($age));
+        //echo(gettype($age)); // test
 
-        $statement = $connection->prepare($sql);
+        $statement = $bdd->prepare($sql);
         $statement->bindParam(':age', $age, PDO::PARAM_STR);
         $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
         $statement->execute();
