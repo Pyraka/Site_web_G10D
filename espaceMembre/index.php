@@ -12,6 +12,7 @@ include "templates/header.php"; ?>
   <li>
     <a href="read.php"><strong>Chercher</strong></a> - chercher un utilisateur
   </li>
+  
 </ul>
 
 <?php include "templates/footer.php"; ?>

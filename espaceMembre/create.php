@@ -87,8 +87,13 @@ else{
 // Fonction permettant de calculer l'age de l'utilisateur en fonction de sa date de naissance 
 
 function age($date){
-    $birthYear = date('Y', strtotime($_POST['birthDate']));
-    $birthMonth = date('m', strtotime($_POST['birthDate']));
+
+    return intval(date('Y', time() - strtotime($date))) - 1970;
+
+    
+    /*
+    $birthYear = date('Y', strtotime($date));
+    $birthMonth = date('m', strtotime($date));
     $todayYear = date('Y', strtotime(date('Y')));
     $todayMonth = date('m', strtotime(date('m')));
     $age = $todayYear - $birthYear;
@@ -98,6 +103,6 @@ function age($date){
     }
     else{
         return($age) - 1;
-    }
+    }*/
 }
 ?>

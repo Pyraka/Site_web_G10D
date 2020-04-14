@@ -1,6 +1,6 @@
 <?php
 
-$bdd = new PDO('mysql:host=localhost;dbname=infinite_', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '');
 
 if (isset($_SESSION['id']) AND $_SESSION['id'] > 0)
 {
@@ -61,7 +61,7 @@ else
 							
 
 							<li>
-								<a href="">
+								<a href="forum.php">
 								<img src="images/logoForum.png" class="logoMenu" />
 								<span class="centerLogo">Forum</span></a>
 							</li>

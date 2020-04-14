@@ -51,8 +51,8 @@ function postMessage(){
 
 	// on analyse les paramètre passés en POST (destinataire, message)
 	$author = $_SESSION['id'];
-	$destinataire = $_POST['destinataire'];
-	$content = $_POST['content'];
+	$destinataire = htmlspecialchars($_POST['destinataire']);
+	$content = htmlspecialchars($_POST['content']);
 
 
 	$requser = $bdd->prepare("INSERT INTO messaging(textMessage, date, idWritter, idReceiver) VALUES(?, NOW(), ?, ?)"); 

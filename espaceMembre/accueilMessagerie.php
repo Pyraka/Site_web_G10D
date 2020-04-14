@@ -17,7 +17,7 @@ include "configAccueilMessagerie.php";
 <body>
 
 	
-
+	<?php include('templates/footer.php');?>
 	<script src="js/barreRecherche.js"></script>
 </body>
 </html>
