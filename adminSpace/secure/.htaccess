@@ -1,0 +1,4 @@
+AuthName "Contenu restreint"
+AuthType Basic
+AuthUserFile "C:\wamp64\www\APPmaster\adminSpace\secure\.htpasswd"
+Require valid-user
