@@ -38,25 +38,15 @@ $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '')
         
     }
 
-   /*else if($_GET['submit']){
-      $req =$bdd->prepare('INSERT INTO user(email, userPassword) VALUES(?,?) ');
-      $req -> execute(array($_GET['email'],$_GET['password']));
-   }*/
 
    if(isset($_GET['ban'])){
 // fonction isBan en bas de la page
 
-   /*   //vérif si utilisateur déjà banni
-      $ban = (int) $_GET['ban'];
-      $allBan = $bdd ->prepare('SELECT * FROM ban WHERE idUser = ?');
-      $allBan -> execute(array($ban));
-      $banExist = $allBan->rowCount();
-
-      if($banExist != 0){
-         echo "Cette personne est déjà banni" ; 
-      }*/
+  
       if (isBan($_GET['ban'])==true){ echo "Cette utilisateur est déjà bannis.";}
+
       //bannissment d'un utilisateur
+
       else{
       $ban = (int) $_GET['ban'];
       $req = $bdd->prepare('INSERT INTO ban(idUser, dateBan) VALUES (?,NOW())');
@@ -85,8 +75,8 @@ $members = $bdd->query('SELECT * FROM user');
 <body>
 <ul>
       <?php while($m = $members->fetch()) { ?>
-      <li><?= $m['idUser'] ?> : <?= $m['email'] ?> - <a href="modifUser.php">Modifier</a>
-      - <a href="manageUser.php?ban=<?= $m['idUser'] ?>">Bannir </a> </li>
+      <li> <?= $m['email'] ?> - <a href="modifUser.php">Modifier</a>
+      - <a href="manageUser.php?ban=<?= $m['idUser'] ?>">Bannir </a>
       - <a href="manageUser.php?deban=<?= $m['idUser'] ?>">Débannir </a> </li>
       <?php } ?>
    </ul>
@@ -110,7 +100,7 @@ $members = $bdd->query('SELECT * FROM user');
     <input type="radio" name="gender" value="Homme"> Homme
     <input type="radio" name="gender" value="Femme"> Femme
     <input type="radio" name="gender" value="Autre"> Autre   
-    <input type="submit" name="submit" value="S'inscrire">
+    <input type="submit" name="submit" value="Ajouter manuellement">
 </form>
 
    <br /><br />
@@ -121,7 +111,9 @@ $members = $bdd->query('SELECT * FROM user');
 <?php
 
 function isBan($id){
+
     //include "configuration.php";
+
     $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '');
    
     $allBan = $bdd ->prepare('SELECT * FROM ban WHERE idUser = ?');

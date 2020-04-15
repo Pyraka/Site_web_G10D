@@ -6,8 +6,14 @@ $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '')
       $req->execute(array($supprime));
    }
    if(isset($_GET['submit'])){
+
+      if(isKey($_GET['keyProd'])==true){
+         echo "Cette clé existe déjà";
+      }
+      else{
        $req =$bdd->prepare('INSERT INTO keyproduct(keyProd) VALUES(?) ');
        $req -> execute(array($_GET['keyProd']));
+      }
    }
 
 $produits = $bdd->query('SELECT * FROM keyproduct');
@@ -21,7 +27,7 @@ $produits = $bdd->query('SELECT * FROM keyproduct');
 <body>
 <ul>
       <?php while($p = $produits->fetch()) { ?>
-      <li><?= $p['idKey'] ?> : <?= $p['keyProd'] ?> - <a href="manageKey.php?supprime=<?= $p['idKey'] ?>">Supprimer</a></li>
+      <li> <?= $p['keyProd'] ?> - <a href="manageKey.php?supprime=<?= $p['idKey'] ?>">Supprimer</a></li>
       <?php } ?>
 
    </ul>
@@ -32,11 +38,25 @@ $produits = $bdd->query('SELECT * FROM keyproduct');
       <input type="submit" name="submit" value="Ajouter">
    </form>
       <br /><br />
-      IL FAUT FAIRE L'UNICITE DE LA CLE PRODUIT
-      <br /><br />
-
       <a href="adminHome.php"> Retour à la page d'administration</a>
 
 
 </body>
 </html>
+
+<?php
+function isKey($key){
+
+//include "configuration.php";
+
+$bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '');
+
+$allKey = $bdd ->prepare('SELECT * FROM keyproduct WHERE keyProd = ?');
+$allKey -> execute(array($key));
+ $keyExist = $allKey->rowCount();
+
+  if($keyExist != 0){
+    return true;
+  }
+}
+?>

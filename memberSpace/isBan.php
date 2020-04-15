@@ -10,4 +10,20 @@ function isIdBan($idBan){
         return true;
       }
 }
+
+function isEmailBan($email){
+    if (session_status()!==PHP_SESSION_ACTIVE){session_start();}
+    include "configuration.php";
+    $emailBan = $bdd -> prepare('SELECT idUser FROM email = ? ');
+    $emailBan -> execute(array($email));
+
+    echo " bojjour";
+
+    if(isIdBan($emailBan)==true){
+        return true;
+    }
+
+    else return false;
+}
+
 ?>
