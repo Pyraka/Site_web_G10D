@@ -8,7 +8,7 @@
 
 <body>
 
-<div class="titre" style="text-align: center;size: 30px">
+<div class="titre" >
     <p><strong>F.A.Q</strong></p>
 </div>
 
@@ -16,7 +16,6 @@
     <ul>
         <li><a href="ajouter.php">Ajouter</a> </li>
         <li><a href="modifier.php">Modifier</a> </li>
-        <li><a href="supprimer.php">Supprimer</a> </li>
     </ul>
 </nav>
 <div class="faq_items">
@@ -24,21 +23,23 @@
 // Connexion à la base de données
 try
 {
-    $bdd = new PDO('mysql:host=localhost;dbname=infinite;charset=utf8', 'root', '');
+// On se connecte à MySQL
+    $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8',
+        'root','');
 }
 catch(Exception $e)
 {
+// En cas d'erreur, on affiche un message et on arrête tout
     die('Erreur : '.$e->getMessage());
 }
-
 // Affichafe des questions
 $reponse = $bdd->query('SELECT textQuestion,textAnswer FROM faq ORDER BY idQuestion');
 
 
 while ($donnees = $reponse->fetch())
 {
-    echo '<p>'.'<strong> ' . htmlspecialchars($donnees['textQuestion']) . '</strong> : </p>';
-    echo '<p>'. htmlspecialchars($donnees['textAnswer']).'</p>';
+    echo '<p>'.'<strong> ' . htmlspecialchars($donnees['textQuestion']) . '</strong>  </p>';
+    echo '<p>' . htmlspecialchars($donnees['textAnswer']).'</p>';
 
 
 }

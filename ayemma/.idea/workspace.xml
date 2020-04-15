@@ -46,6 +46,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\moula\PhpstormProjects\ayemma" />
+    </key>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -57,7 +62,8 @@
       <option name="presentableId" value="Default" />
       <updated>1586412128955</updated>
       <workItem from="1586412130170" duration="34243000" />
-      <workItem from="1586683247066" duration="17801000" />
+      <workItem from="1586683247066" duration="42429000" />
+      <workItem from="1586811404321" duration="8786000" />
     </task>
     <servers />
   </component>
@@ -81,18 +87,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="883" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1586687901391" />
-    <state x="910" y="170" key="FileChooserDialogImpl" timestamp="1586544285566">
+    <state x="910" y="170" key="FileChooserDialogImpl" timestamp="1586769914415">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="910" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586544285566" />
+    <state x="910" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586769914415" />
     <state x="567" y="227" key="NewPhpClassDialog" timestamp="1586416576872">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="567" y="227" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1586416576872" />
-    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1586594291248">
+    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1586776490737">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1586594291248" />
+    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1586776490737" />
     <state x="871" y="190" key="run.anything.popup" timestamp="1586609251473">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

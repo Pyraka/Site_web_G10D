@@ -1,4 +1,5 @@
-<html>
+
+<html >
 <head>
     <link rel="stylesheet" href="style.css">
     <p><strong> Selectionnez les questions à supprimer:</strong></p>
@@ -8,7 +9,7 @@
     <form method="post" action="supp.php">
         <table border="1" style="overflow-x:hidden;table-layout: fixed;" >
             <tr>
-                <td>idQuestion</td>
+                <td >idQuestion</td>
                 <td>Questions</td>
                 <td >Cochez</td>
             </tr>
@@ -16,8 +17,8 @@
             <?php
             try
             {
-                // On se connecte à MySQL
-                $bdd = new PDO('mysql:host=localhost;dbname=infinite;charset=utf8',
+            // On se connecte à MySQL
+                $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8',
                     'root','');
             }
             catch(Exception $e)
@@ -25,22 +26,23 @@
                 // En cas d'erreur, on affiche un message et on arrête tout
                 die('Erreur : '.$e->getMessage());
             }
-            $reponse = $bdd->query('SELECT * FROM faq WHERE isDeleted = 0');
+
+            $reponse = $bdd->query('SELECT * FROM faq');
             $idQuestion=isset($_POST['idQuestion'])?$_POST['idQuestion']: NULL;
             while ($donnees = $reponse->fetch()) {
                 echo"<tr><td>".$donnees['idQuestion']."</td>";
                 echo"<td>".$donnees['textQuestion']."</td>";
-                echo"<td><input type='checkbox' name='delete[", $donnees['idQuestion'], "]' value=", $donnees['idQuestion'], "></td>";
+                echo"<td><input type='checkbox' name='delete[]' value='".$donnees['idQuestion']."'></td>";
                 echo"</tr>";
             }
             $reponse->closeCursor();
             ?>
         </table>
 
-        <input type="submit" style="align-content: center">
+        <input type="submit"  style="align-content: center">
     </form>
 </div>
-<p><a href="Index.php">Accueil</a> </p>
+<p><a href="Index.php">Acceuil</a> </p>
 </body>
 </html>
 
