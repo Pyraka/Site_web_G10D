@@ -7,27 +7,35 @@ $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '')
    if (isset($_POST['submit']) && isset($_POST['firstName']) AND isset($_POST['lastName']) AND isset($_POST['email']) AND isset($_POST['userPassword']) AND isset($_POST['birthDate']) AND isset($_POST['gender']) AND ($_POST['mdp_verif'])==($_POST['userPassword'])) {
     
       try {
-  
-          // on vérifie que l'email n'est pas déjà utilisée
-          $requser = $bdd->prepare("SELECT * FROM user WHERE email = ?");
-          $requser->execute(array($_POST['email']));
-  
-          $userexist = $requser->rowCount();
-          if($userexist != 0) {
-              echo "Cette adresse email est deja utilisé...";
-          }
 
-          else{
+        if(($_POST['productKey'])!==""){
+            //on vérifie que la clé produit n'est pas déjà utilisée
+            $reqkey = $bdd->prepare("SELECT * FROM keyproduct WHERE keyProd = ?");
+            $reqkey ->execute(array($_POST['productKey']));
+            $keyexist = $reqkey ->rowCount();
 
-            // on ajoute s'il n'y a pas deja cette adresse mail dans la bdd
-            $requser1 = $bdd->prepare("INSERT INTO user(firstName, lastName, email, birthDate, gender, userPassword, subDate, age) VALUES(?, ?, ?, ?, ?, ?, NOW(), ?)");
-            $requser1->execute(array($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['birthDate'], $_POST['gender'], md5($_POST['userPassword']), age($_POST['birthDate'])));
+            if($keyexist != 1){
+                ?> Cette clé produit n'existe pas... <?php
+            }
+            else{
+                //on ajoute l'utilisateur à la table manager via son idUser et sa clé produit 
+                emailUse($_POST['email']);
+                $req = $bdd -> query('SELECT * FROM user ORDER BY idUser DESC LIMIT 1'); //permet de selectionner l'id du dernier utilisateur qui s'est inscrit
+                while($m = $req->fetch()) {
+                    $req2 = $bdd -> prepare("INSERT INTO manager(idUser, productKey) VALUES(?, ?)");
+                    $req2->execute(array($m['idUser'],$_POST['productKey']));
+                }
+            }
 
-            // On refait une requete maintenant que l'utilisateur a été ajouté
-            $requser->execute(array($_POST['email']));
-            $utilisateur = $requser->fetch();
-          }
-      }catch (PDOException $error) {
+        }
+        
+        else{
+
+            emailUse($_POST['email']);
+                
+        }
+      
+        }catch (PDOException $error) {
             echo $error->getMessage();
          }
    }
@@ -85,7 +93,7 @@ $members = $bdd->query('SELECT * FROM user');
       <?php } ?>
    </ul>
 
-   <form method="post">
+   <form method="POST">
       <strong> Ajouter un utilisateur manuellement </strong>
     <label for="firstName">Prénom</label>
     <input type="text" name="firstName" id="firstName" placeholder="Prénom" required>
@@ -103,7 +111,9 @@ $members = $bdd->query('SELECT * FROM user');
     <label for="gender">Genre</label>
     <input type="radio" name="gender" value="Homme"> Homme
     <input type="radio" name="gender" value="Femme"> Femme
-    <input type="radio" name="gender" value="Autre"> Autre   
+    <input type="radio" name="gender" value="Autre"> Autre 
+    <label for="productKey">Clé produit</label>
+    <input type="int" name="productKey" id="productKey" placeholder="XXXXXXXX"> 
     <input type="submit" name="submit" value="Ajouter manuellement">
 </form>
 
@@ -144,5 +154,24 @@ function age($date){
         return($age) - 1;
     }
 }
-?>
 
+function emailUse($email){
+    $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '');
+    $requser = $bdd->prepare("SELECT * FROM user WHERE email = ?");
+    $requser->execute(array($email));
+    $userexist = $requser->rowCount();
+    //on vérifie que l'adresse mail n'est pas déjà utilisée
+    if($userexist != 0){
+        echo "Cette adresse mail est déjà utilisée";
+    }
+    else{
+        // on ajoute s'il n'y a pas deja cette adresse mail dans la bdd
+        $requser1 = $bdd->prepare("INSERT INTO user(firstName, lastName, email, birthDate, gender, userPassword, subDate, age) VALUES(?, ?, ?, ?, ?, ?, NOW(), ?)");
+        $requser1->execute(array($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['birthDate'], $_POST['gender'], md5($_POST['userPassword']), age($_POST['birthDate'])));
+        // On refait une requete maintenant que l'utilisateur a été ajouté
+        $requser->execute(array($_POST['email']));
+        $utilisateur = $requser->fetch();
+        }
+}
+
+?>
