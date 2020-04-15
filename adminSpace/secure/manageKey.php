@@ -6,7 +6,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '')
       $req->execute(array($supprime));
    }
    if(isset($_GET['submit'])){
-
       if(isKey($_GET['keyProd'])==true){
          echo "Cette clé existe déjà";
       }
@@ -14,6 +13,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '')
        $req =$bdd->prepare('INSERT INTO keyproduct(keyProd) VALUES(?) ');
        $req -> execute(array($_GET['keyProd']));
       }
+
    }
 
 $produits = $bdd->query('SELECT * FROM keyproduct');
@@ -32,6 +32,7 @@ $produits = $bdd->query('SELECT * FROM keyproduct');
 
    </ul>
    <br /><br />
+
 
    <form method="get"> 
       <input type="int" name="keyProd" placeholder="XXXXXXXX"> Clé produit   
@@ -60,3 +61,4 @@ $allKey -> execute(array($key));
   }
 }
 ?>
+

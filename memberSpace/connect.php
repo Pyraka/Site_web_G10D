@@ -5,6 +5,7 @@ include "configuration.php";
 
 if(isset($_POST['formconnexion'])) {
    $mailconnect = htmlspecialchars($_POST['mailconnect']);
+
    
 //la vérification de ban ne fonctionne pas et mets 3 erreurs liées aux sessions
    /*require "isBan.php";

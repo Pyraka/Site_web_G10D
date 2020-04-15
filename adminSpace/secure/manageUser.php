@@ -64,6 +64,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '')
 
 
 
+
 $members = $bdd->query('SELECT * FROM user');
 ?>
 <!DOCTYPE html>
@@ -141,3 +142,4 @@ function age($date){
     }
 }
 ?>
+
