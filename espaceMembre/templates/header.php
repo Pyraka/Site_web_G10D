@@ -54,7 +54,7 @@ else
 								<span class="centerLogo">Information système</span></a>
 							</li>
 							<li>
-								<a href="">
+								<a href="faq.php">
 								<img src="images/logoFaq.png" class="logoMenu" />
 								<span class="centerLogo">Faq</span></a>
 							</li>
