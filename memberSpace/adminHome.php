@@ -13,7 +13,9 @@ Bonjour, Administrateur <!-- http://localhost/APPmaster/adminSpace/secure/adminH
   <li>
     <a href="manageKey.php"><strong>Gérer les clés produit</strong></a>
   </li>
-
+  <li>
+  <a href="FAQAdmin.php"><strong> Gérer FAQ</strong> </li>
+  <li>
   <li><a href="msgAdmin"><strong>Messagerie administrative</strong>
 </li>
   
