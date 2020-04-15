@@ -1,9 +1,9 @@
 Bonjour, Administrateur <!-- http://localhost/APPmaster/adminSpace/secure/adminHome.php -->
 <ul>
   <li>
-    <a href="manageUser.php"><strong>Supprimer un utilisateur</strong></a>
+    <a href="manageUser.php"><strong>Gérer les utilisateurs</strong></a>
   </li>
   <li>
-    <a href="manageKey.php"><strong>Ajouter ou supprimer une clé produit</strong></a>
+    <a href="manageKey.php"><strong>Gérer les clés produit</strong></a>
   </li>
 </ul>

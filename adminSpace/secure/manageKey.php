@@ -6,8 +6,8 @@ $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '')
       $req->execute(array($supprime));
    }
    if(isset($_GET['submit'])){
-       $req =$bdd->prepare('INSERT INTO keyproduct(idKey, keyProd) VALUES(?,?) ');
-       $req -> execute(array($_GET['idKey'],$_GET['keyProd']));
+       $req =$bdd->prepare('INSERT INTO keyproduct(keyProd) VALUES(?) ');
+       $req -> execute(array($_GET['keyProd']));
    }
 
 $produits = $bdd->query('SELECT * FROM keyproduct');
@@ -27,11 +27,10 @@ $produits = $bdd->query('SELECT * FROM keyproduct');
    </ul>
    <br /><br />
 
-   <form method="get">
-   <input type="int" name="idKey" placeholder="XXXXXXXX"> Id de clé unique 
+   <form method="get"> 
       <input type="int" name="keyProd" placeholder="XXXXXXXX"> Clé produit   
-    <input type="submit" name="submit" value="Ajouter">
-      </form>
+      <input type="submit" name="submit" value="Ajouter">
+   </form>
       <br /><br />
       IL FAUT FAIRE L'UNICITE DE LA CLE PRODUIT
       <br /><br />
