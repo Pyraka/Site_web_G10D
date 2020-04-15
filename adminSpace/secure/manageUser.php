@@ -57,10 +57,13 @@ $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '')
    //débannissmenet d'un utilisateur
 
    else if(isset($_GET['deban'])){
+    if (isBan($_GET['deban'])!== true){echo "Cette utilisateur est déjà non bannis.";}
+    else{
       $deban = (int) $_GET['deban'];
       $req = $bdd->prepare('DELETE FROM ban WHERE idUser = ?');
       $req->execute(array($deban));
    }
+}
 
 
 
