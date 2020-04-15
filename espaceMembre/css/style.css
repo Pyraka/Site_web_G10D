@@ -1,0 +1,336 @@
+label {
+  display: block;
+  margin: 5px 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html
+{
+	font-family: 'calibri'; 
+	background-attachment: fixed;
+	height: 100%;
+}
+
+body 
+{
+	display: block;
+  	height:100%;
+  	margin: 0;
+  	padding: 0;
+  	position: relative;
+}
+
+header
+{
+	height: 100px;
+	background-color: #8BACED; 
+}
+
+footer 
+{
+	position: absolute; 
+	bottom: 0; 
+	left: 0;
+	right: 0;
+}
+
+#LogoSite
+{
+	position: relative;
+	top: 0.7em;
+	left: 1em;
+}
+
+.inline li
+{
+	display: inline;
+}
+
+#LogoHome
+{
+	width: 80px;
+	height: 80px;
+	float: left;
+}
+
+#LogoProfile
+{
+	width: 60px;
+	height: 60px;
+	float: right;
+}
+
+.logoMenu
+{
+	width: 20px;
+	height: 20px;
+}
+
+.menu
+{
+	display: flex;
+	justify-content: space-around;
+}
+
+#menuPrincipal li
+{
+	position: relative;
+	top: 1.3em;
+	left: 0.5em;
+	padding-left: 2em;
+}
+
+#menuPrincipal a
+{
+	color: #2B3087;
+}
+
+#menuPrincipal a:hover span
+{
+	text-decoration: underline;
+}
+
+#menuAuthentification li
+{
+	position: relative;
+	top: 1.3em;
+	left: 2em;
+	padding: 0.55em;
+	border: 0.15em solid #2B3087;
+	border-radius: 0.6em;
+	text-align: center;
+}
+
+#connect
+{
+	color: #2B3087;
+}
+
+#connect:hover
+{
+	text-decoration: underline;
+}
+
+#inscription
+{
+	background-color: #2B3087;
+	color: #8BACED;
+}
+
+#inscription:hover		
+{
+	background-color: #8BACED;
+	color: #2B3087;
+	text-decoration: underline;
+}
+
+#menuPrincipal a,#menuAuthentification a
+{
+	text-decoration: none;
+}
+
+.centerLogo
+{
+	position: relative;
+	bottom: 0.25em;
+}
+
+.Footer
+{
+	width: 100%;
+	background-color: rgb(139,172,237,0.3);
+	border-top: 0.1em solid #8BACED;
+	display: flex;
+	justify-content: space-around;
+}
+
+#menuFooter li
+{
+	padding-left: 2em;
+}
+
+.linkFooter
+{
+	color: #2B3087;
+	text-decoration: none;
+}
+.linkFooter:hover
+{
+	color: #8BACED;
+	text-decoration: underline;
+}
+
+.ourPhotos
+{
+	margin-left: 14em;
+	margin-right: 14em;
+	margin-top: 3em;
+	display: flex;
+	justify-content: space-around;
+}
+
+.ourPhotos img,figcaption
+{
+	width: 7em;
+	height: 10.5em;
+	text-align: center;
+}
+
+#PresentationMedisys
+{
+	text-align: center;
+}
+
+/* mise en page messagerie */
+
+.chat {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+	padding-top: 5px;
+	padding-left: 5px;
+	width: 100%;
+	height: 100%;
+	padding-right: 5px;
+	padding-top: 0;
+}
+
+.messages {
+	
+  	
+  	border-radius: 5px;
+  	border: solid;
+  	padding: 1em;
+  	height: 100%;
+  	overflow: scroll;
+
+}
+
+.message {
+  color: black;
+  padding: 0.3em;
+}
+
+.date, .author {
+  font-weight: bold;
+}
+
+
+input, button {
+  padding: 0.5em;
+}
+
+input {
+  margin-right: 10px;
+}
+
+#author {
+  width: 20%;
+}
+
+#content {
+  width: 90%;
+}
+
+button[type="submit"]{
+  width: 20%;
+}
+
+
+#formMessagerie {
+	position: fixed;
+	bottom: 5px; 
+	left: 5px;
+	right:5px;
+	display: flex;
+	justify-content: flex-start;
+
+
+}
+
+.divChat {
+	display: flex;
+	height: 100%;
+	width: 75%;
+	margin-bottom: 40px;
+}
+
+.messagerie{
+	display: flex;
+	height: 70%;
+	flex-direction: row;
+	margin-bottom: 40px;
+}
+
+.conversations{
+	overflow: scroll;
+	width: 25%;
+	margin-right: 5px;
+	border-style: groove;
+	
+}
+
+.barreRechercheMessagerie{
+	display: flex;
+	justify-content: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.champRechercheMessagerie{
+	width: 20em; 
+	justify-content: center;
+}
+
+#PrenomNomCorresp, #dernierMessage{
+	text-align: center;
+}
+
+
+.listeContacts {
+	border-style: groove;
+}
+
+.linksMessenger a{
+	display: block;
+	text-decoration: none;
+	color: black;
+	width: 100%;
+	height: 100%;
+}
+
+.linksMessenger a:visited{
+	text-decoration: none;
+	color: black;
+}
+
+.linksMessenger a:hover{
+	background-color: #F2F2F2;
+	cursor: default;
+}
+
+.linksMessenger label{
+	margin: 0;
+}
+
+
+
+
+/* fin de mise en page messagerie */
+
+/*début CGU*et mention légale*/
+.CGU{
+	padding-left: 25px;
+	padding-right: 25px;
+}
+.mentionslégales{
+	
+}
+.informationsystèmes{
+	padding-left: 25px;
+	padding-right: 25px;
+}
