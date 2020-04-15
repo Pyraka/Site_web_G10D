@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 12 avr. 2020 à 14:02
+-- Généré le :  mer. 15 avr. 2020 à 22:14
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -86,6 +86,30 @@ CREATE TABLE IF NOT EXISTS `forum` (
   `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`idQuestion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `imageprofil`
+--
+
+DROP TABLE IF EXISTS `imageprofil`;
+CREATE TABLE IF NOT EXISTS `imageprofil` (
+  `idImage` int(11) NOT NULL AUTO_INCREMENT,
+  `imageDirectory` text NOT NULL,
+  PRIMARY KEY (`idImage`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `imageprofil`
+--
+
+INSERT INTO `imageprofil` (`idImage`, `imageDirectory`) VALUES
+(1, 'images/photoProfil/user.jpg'),
+(5, 'images/photoProfil/axel.jpg'),
+(6, 'images/photoProfil/arnaud.jpg'),
+(11, 'images/photoProfil/jean.jpg'),
+(13, 'images/photoProfil/jeremy.jpg');
 
 -- --------------------------------------------------------
 
@@ -227,7 +251,16 @@ CREATE TABLE IF NOT EXISTS `test` (
   `dateTest` datetime NOT NULL,
   `idUser` int(11) NOT NULL,
   PRIMARY KEY (`idTest`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `test`
+--
+
+INSERT INTO `test` (`idTest`, `reactionTime`, `soundReproductionQuality`, `BPMAverage`, `temperatureAverage`, `dateTest`, `idUser`) VALUES
+(1, 20, 52, 42, 24, '2018-04-08 00:00:00', 7),
+(2, 41, 75, 41, 92, '2018-07-25 00:00:00', 7),
+(3, 91, 41, 74, 15, '2018-05-12 00:00:00', 6);
 
 -- --------------------------------------------------------
 
@@ -246,21 +279,24 @@ CREATE TABLE IF NOT EXISTS `user` (
   `userPassword` text NOT NULL,
   `subDate` date NOT NULL,
   `age` int(11) NOT NULL,
+  `idImage` int(11) DEFAULT 1,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`idUser`, `firstName`, `lastName`, `email`, `birthDate`, `gender`, `userPassword`, `subDate`, `age`) VALUES
-(5, 'arnaud5', 'Guilhamat5', 'arnaud.guilhamat@sfr.fr', '2020-03-30', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
-(6, 'arnaud6', 'Guilhamat6', 'arnaud.guilhamat@isep.fr', '2020-03-30', 'Autre', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
-(7, 'arnaud7', 'Guilhamat7', 'guilhamat.arnaud@gmail.com', '2020-04-01', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
-(10, 'arnaud10', 'Guilhamat8', 'a.gui@makl.co', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
-(11, 'jeanb', 'dadaa', 'j.dad@g.m', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
-(12, 'arnaud', 'Guilhamat', 'zaza.zaz@da.com', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', -1),
-(13, 'arnaud', 'Guilhamat', 'grezq@afa.f', '2009-12-28', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', 10);
+INSERT INTO `user` (`idUser`, `firstName`, `lastName`, `email`, `birthDate`, `gender`, `userPassword`, `subDate`, `age`, `idImage`) VALUES
+(5, 'arnaud5', 'Guilhamat5', 'arnaud.guilhamat@sfr.fr', '2020-03-30', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0, 1),
+(6, 'arnaud6', 'Guilhamat6', 'arnaud.guilhamat@isep.fr', '2020-03-30', 'Autre', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0, 1),
+(7, 'arnaud7', 'Guilhamat7', 'guilhamat.arnaud@gmail.com', '2020-04-01', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0, 1),
+(10, 'arnaud10', 'Guilhamat8', 'a.gui@makl.co', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0, 1),
+(11, 'jeanb', 'dadaa', 'j.dad@g.m', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0, 1),
+(12, 'arnaud', 'Guilhamat', 'zaza.zaz@da.com', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', -1, 1),
+(13, 'arnaud', 'Guilhamat', 'grezq@afa.f', '2009-12-28', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', 10, 1),
+(15, 'Axel', 'Sagredo', 'axel.sagredo@hotmail.fr', '2011-06-17', 'homme', 'df5ea29924d39c3be8785734f13169c6', '2020-04-12', 20, 5),
+(16, 'dnoifo', 'kjxdns', 'sljdl@eizbzz', '2020-04-03', 'Autre', '6297acef06f732c289c27f5979497c6c', '2020-04-13', -1, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

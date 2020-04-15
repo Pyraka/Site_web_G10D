@@ -61,17 +61,24 @@ if(isset($_SESSION['id'])) {
       $targetDirectory = "images/photoProfil/";
       $targetFile = $targetDirectory . basename($_FILES['photoProfil']['name']);
       if (move_uploaded_file(($_FILES['photoProfil']['tmp_name']), $targetFile)) {
-         $insertPhoto=$bdd->prepare("INSERT INTO imageprofil(imageDirectory) VALUES (?)");
-         $insertPhoto->execute(array($targetFile));
+         try {
+            $reqImage=$bdd->prepare("SELECT imageDirectory FROM imageprofil WHERE imageDirectory = ?");
+            $reqImage->execute(array($targetFile));
+            $imageExist = $reqImage->rowcount();
+            if($imageExist < 1){
+               $insertPhoto=$bdd->prepare("INSERT INTO imageprofil(imageDirectory) VALUES (?)");
+               $insertPhoto->execute(array($targetFile));
+            }  
+         } catch (Exception $error) {
+            echo $error->getMessage();
+         }
          $selectPhoto=$bdd->prepare("SELECT idImage FROM imageprofil WHERE imageDirectory = ?");
          $selectPhoto->execute(array($targetFile));
          $selectedPhoto = $selectPhoto->fetch();
          $changePhoto=$bdd->prepare("UPDATE user SET idImage = ? WHERE idUser = ?");
          $changePhoto->execute(array($selectedPhoto['idImage'], $_SESSION['id']));
-         $_SESSION['photo'];
+         $_SESSION['photo'] = $selectedPhoto['idImage'];
          header('Location: profil.php?id='.$_SESSION['id']);
-      } else {
-         $msg = "Erreur de chargement de la photo";
       }
    }
 
@@ -84,8 +91,7 @@ if(isset($_SESSION['id'])) {
    </head>
    <body>
       <?php require "templates/header.php"; ?>
-      <div align="center" class="pute">
-         <h2>Edition de mon profil</h2>
+         <h2 class="title">Edition de mon profil</h2>
          <div class="formulaireColonnes">
             <form method="POST" action="" enctype="multipart/form-data">
                <div class="colonne1">
@@ -111,16 +117,19 @@ if(isset($_SESSION['id'])) {
                   <input type="password" name="newmdp1" placeholder="Mot de passe"/><br /><br />
                   <label for="newmdp2">Confirmation - mot de passe :</label>
                   <input type="password" name="newmdp2" placeholder="Confirmation du mot de passe" /><br /><br />
+                  <?php if(isset($msg)) { echo $msg; } ?>
                </div>
                <div class="colonne3">
+                  <h3>modification de la photo</h3>
+                  <p>photo actuelle :</p>
+                  <img src="<?php echo $imageProfil['imageDirectory'] ?>" id="photoProfil"/>
+                  <br/><br/>
                   <input type="file" name="photoProfil"/> <br/><br/>
-                  <input type="submit" value="Mettre à jour mon profil !" />
                </div>
-            </form>
-            <?php if(isset($msg)) { echo $msg; } ?>
+               <input type="submit" value="Mettre à jour mon profil !" id="endEdition"/>
+               <a href="<?php echo 'profil.php?id='.$_SESSION['id'];?>" class="linkEdProfil">Revenir au profil</a>
+            </form> 
          </div>
-         <a href="<?php echo 'profil.php?id='.$_SESSION['id'];?>">Revenir au profil</a>
-      </div>
       <?php require "templates/footer.php"; ?>
    </body>
 </html>

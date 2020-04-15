@@ -37,7 +37,7 @@ $reqTest = $bdd->prepare('SELECT * FROM test WHERE idTest = ?');
 $reqTest->execute(array($_GET['id']));
 while ($test = $reqTest->fetch()) {?>
 	<h1 class="title">Liste des résultats</h1>
-	<p id="descriptionTest"> effectué le <?php echo $test['dateTest'] ?></p>
+	<p class="underTitle"> effectué le <?php echo $test['dateTest'] ?></p>
 	<br/><br/>
 	<ul id="listResults">
 		<li>Résultats du test de rythme cardiaque : <?php echo $test['BPMAverage']?>bpm</li>
@@ -46,7 +46,7 @@ while ($test = $reqTest->fetch()) {?>
 		<li>Résultats du test de reproduction sonore : <?php echo $test['soundReproductionQuality']?></li>
 	</ul>
 
-	<div style="position: relative; bottom: 8em; left: 40em; height: 20vh; width: 50vw">
+	<div id="graph">
 		<canvas id="myChart"></canvas>
 		<script>
 			var ctx = document.getElementById('myChart').getContext('2d');
@@ -75,8 +75,8 @@ while ($test = $reqTest->fetch()) {?>
 			});
 		</script>
 	</div>
-
-<a href="listResults.php?id=<?php echo $test['idUser']?>">Revenir à la liste des résultats</a>
+<br/><br/><br/><br/><br/>
+<a href="listResults.php?id=<?php echo $test['idUser']?>" class="linkBack">Revenir à la liste des résultats</a>
 
 <?php }
 $reqTest->closeCursor();

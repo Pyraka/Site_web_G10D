@@ -21,7 +21,6 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
       <?php require "templates/header.php"; ?>
       <div align="center">
          <h2>Profil de <?php echo $userinfo['firstName'], " ", $userinfo['lastName']; ?></h2>
-         <br />
          <img src="<?php echo $imageProfil['imageDirectory'] ?>" id="photoProfil"/>
          <p>Mail = <?php echo $userinfo['email']; ?></p>
          
@@ -37,8 +36,8 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
          if(isset($_SESSION['id']) AND $userinfo['idUser'] == $_SESSION['id']) {
          ?>
          <br />
-         <a href="editionprofil.php">Editer mon profil</a>
-         <a href="deconnexion.php">Se déconnecter</a>
+         <a href="editionprofil.php" class="linkProfil">Editer mon profil</a>
+         <a href="deconnexion.php" class="linkProfil">Se déconnecter</a>
          <?php
          }
          ?>

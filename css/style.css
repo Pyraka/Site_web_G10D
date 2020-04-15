@@ -170,7 +170,7 @@ footer
 {
 	margin-left: 14em;
 	margin-right: 14em;
-	margin-top: 3em;
+	margin-top: 7em;
 	display: flex;
 	justify-content: space-around;
 }
@@ -184,7 +184,10 @@ footer
 
 #PresentationMedisys
 {
-	text-align: center;
+	margin-left: 5.4em;
+	margin-right: 5.4em;
+	position: relative;
+	bottom :8em;
 }
 
 /*fin de mise en page qui sommes nous*/
@@ -333,10 +336,27 @@ button[type="submit"]{
 /*mise en page profil*/
 
 #photoProfil{
-	width: 2em;
-	height: 4em;
+	width: 7.5em;
+	height: 10em;
 }
 
+.linkProfil {
+	padding: 0.3em;
+	border: 1px solid #8BACED;
+	border-radius: 0.2em;
+	background-color: #8BACED;
+	text-decoration: none;
+	color: white;
+}
+
+.linkProfil:hover {
+	padding: 0.3em;
+	border: 1.5px solid #8BACED;
+	border-radius: 0.2em;
+	background-color: white;
+	text-decoration: underline;
+	color: #8BACED;
+}
 
 /*fin mise en page profil*/
 
@@ -349,14 +369,152 @@ button[type="submit"]{
 
 .colonne1{
 	float: left;
+	position: relative;
+	left: 3em;
 }
 
 .colonne2{
-	float: center;
+	float: middle;
+	position: relative;
+	left: 15em;
+	top: 1.3em;
 }
 
 .colonne3{
 	float: right;
+	position: relative;
+	bottom: 18.5em;
+	right: 2em;
+}
+
+#endEdition {
+	display: inline;
+	position: relative;
+	top: 8em;
+	left: 23em;
+}
+
+.linkEdProfil {
+	padding: 0.3em;
+	border: 1px solid #8BACED;
+	border-radius: 0.2em;
+	background-color: #8BACED;
+	text-decoration: none;
+	color: white;
+	position: relative;
+	top: 8.5em;
+	left: 48em;
+}
+
+.linkEdProfil:hover {
+	padding: 0.3em;
+	border: 1.5px solid #8BACED;
+	border-radius: 0.2em;
+	background-color: white;
+	text-decoration: underline;
+	color: #8BACED;
+	position: relative;
+	top: 8.5em;
+	left: 48em;
 }
 
 /* fin mise en page formulaire edition de profil
+
+
+/*mise en page listes des résultats et résultats*/
+
+.title {
+	position: relative;
+	left: 0.7em;
+}
+
+.underTitle {
+	position: relative;
+	bottom: 1.4em;
+	left: 1.6em;
+}
+
+#listTests {
+	position: relative;
+	left: 2em;
+	color: black;
+	text-decoration: none;
+}
+
+#listTests:hover {
+	position: relative;
+	left: 2em;
+	color: #2B3087;
+	font-weight: bold;
+}
+
+.tableau {
+	border-collapse: collapse;
+	position: relative;
+	position: relative;
+	left: 32em;
+	bottom: 5em;
+}
+
+.tableau caption {
+	caption-side: bottom;
+	font-weight: bold;
+}
+
+.bordureTableau td , .bordureTableau th {
+	border : 1px solid black;
+	text-align : center;
+}
+
+.bordureTableau th {
+	padding-left : 0.5em; 
+	padding-right: 0.5em;
+}
+
+#noResult {
+	position: relative;
+	top: 4em;
+	left: 35em;
+}
+
+#graph {
+	height: 20vh;
+	width: 50vw;
+	position: relative;
+	bottom: 11em;
+	left: 36em;
+}
+
+#listResults li {
+	position: relative;
+	top: 3em;
+	left: 2em;
+}
+
+.linkBack {
+	position: absolute;
+	left: 1.5em;
+	bottom: 4em;
+	padding: 0.3em;
+	border: 1px solid #8BACED;
+	border-radius: 0.2em;
+	background-color: #8BACED;
+	text-decoration: none;
+	color: white;
+}
+
+.linkBack:hover {
+	position: absolute;
+	left: 1.5em;
+	bottom: 4em;
+	padding: 0.3em;
+	border: 1.5px solid #8BACED;
+	border-radius: 0.2em;
+	background-color: white;
+	text-decoration: underline;
+	color: #8BACED;
+}
+
+
+
+/*fin mise en page liste résultats et résultats*/

@@ -11,13 +11,13 @@ while ($user = $reqUser->fetch())
 {
 ?>
 	<h1 class="title">Listes des tests</h1>
-	<?php echo "utilisateur : " . $user['firstName'] . " " . $user['lastName'];?>
-	<br/><br/>
+	<p class="underTitle">utilisateur : <?php echo $user['firstName'] . " " . $user['lastName'];?></p>
+	<br/>
 	<?php
 	$reqTest = $bdd->prepare('SELECT dateTest, idTest FROM test WHERE idUser = ?');
 	$reqTest->execute(array($_GET['id']));
 	while ($test = $reqTest->fetch()) { ?>
-		<a href="results.php?id=<?php echo $test['idTest']?>">
+		<a href="results.php?id=<?php echo $test['idTest']?>" id="listTests">
 			<img src="images/logoResults.png" class="logoMenu" />
 			Test effectué le <?php echo $test['dateTest']?>
 		</a>
@@ -28,22 +28,22 @@ while ($user = $reqUser->fetch())
 	$reqTest->closeCursor();
 	?>
 
-	<br/><br/>
+	<br/>
 	<?php
 	$istest = $bdd->prepare('SELECT idTest FROM test WHERE idUser = ?');
 	$istest->execute(array($_GET['id']));
 	$tests = $istest->fetch();
 	if (!($tests['idTest']==NULL)) { //s'il a effectué des tests?> 
-		<table>
+		<table class="tableau">
 			<caption>résultas de <?php echo $user['firstName'] . " " . $user['lastName']?> </caption>
 	        <thead>
-	            <tr>
+	            <tr class="bordureTableau">
 	                <th>Numéro du test</th>
 	                <th>Date du test</th>
-	                <th>Rythme cardiaque</th>  
-	                <th>Température</th>
-	                <th>Temps de réaction</th>
-	                <th>Reproduction sonore</th>
+	                <th>Rythme cardiaque <br/>(en bpm)</th>  
+	                <th>Température<br/>(en °C)</th>
+	                <th>Temps de réaction<br/>(en ms)</th>
+	                <th>Reproduction sonore<br/>(en %)</th>
 	            </tr>
 	        </thead>
 	        <tboby>
@@ -63,7 +63,7 @@ while ($user = $reqUser->fetch())
 					$month = "0" . $test['month'];
 				} else { $month = $test['month'];}
 				?>
-	        		<tr>
+	        		<tr class="bordureTableau">
 	        			<td><?php echo $compteur; ?></td>
 	        			<td><?php echo $day . "/" . $month . "/" . $test['year']; ?></td>
 	        			<td><?php echo $test['BPMAverage']; ?></td>
@@ -77,10 +77,9 @@ while ($user = $reqUser->fetch())
 			</tbody>
 	    </table>
 	<?php
-	} else {
-		echo "Aucun test n'a été effectué par cette personne.";
-	}
-	?>
+	} else { ?>
+		<p id="noResult">Aucun test n'a été effectué par cette personne.</p>
+	<?php } ?>
 
 
 <?php
@@ -90,6 +89,6 @@ $reqUser->closeCursor();
 ?>
 
 <br/><br/>
-<a href="read.php">Revenir à la page de recherche</a>
+<a href="read.php" class="linkBack">Revenir à la page de recherche</a>
 
 <?php require "templates/footer.php"; //footer?> 	

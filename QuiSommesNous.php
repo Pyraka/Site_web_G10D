@@ -36,9 +36,9 @@
 				</figure>
 			</div>
 
-			<p id="PresentationMedisys">Médi-sys est une jeune start-up fondé en 2018 par un groupe de 6 ingénieurs présentés ci-dessus. ils ont déjà travaillé en collaboration avec différents hopitaux de Paris sur la réalisation de capteur mesurant la fréquence cardiaque. <br/> Cette nouvelle entreprise a eu la chance de se développer et de travaiiler avec un nouveau client, Infinite Mesures, sur la réalisation d'un système de test psychomoteur. Vous trouverez plus d'informations sur ce système <a href="">ici</a>.</p>
+			<p id="PresentationMedisys">Médi-sys est une jeune start-up fondé en 2018 par un groupe de 6 ingénieurs présentés ci-dessus. ils ont déjà travaillé en collaboration avec différents hopitaux de Paris sur la réalisation de capteur mesurant la fréquence cardiaque. Cette nouvelle entreprise a eu la chance de se développer et de travaiiler avec un nouveau client, Infinite Mesures, sur la réalisation d'un système de test psychomoteur. Vous trouverez plus d'informations sur ce système <a href="">ici</a>.</p>
 		</section>
 
-		<?php require "templates/footer.php"; //header?>
+		<?php require "templates/footer.php"; //footer?>
 	</body>
 </html>
