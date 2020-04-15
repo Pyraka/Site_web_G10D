@@ -1,5 +1,6 @@
-<?php
-$bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8', 'root', '');
+<?php include "configuration.php";
+include "templates/header.php";
+
    if(isset($_GET['supprime']) AND !empty($_GET['supprime'])) {
       $supprime = (int) $_GET['supprime'];
       $req = $bdd->prepare('DELETE FROM keyproduct WHERE idKey = ?');
@@ -61,4 +62,6 @@ $allKey -> execute(array($key));
   }
 }
 ?>
-
+<?php include "templates/footer.php"; ?>
+  </body>
+</html>

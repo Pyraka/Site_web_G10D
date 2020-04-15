@@ -13,7 +13,9 @@ include "templates/header.php"; ?>
     <a href="read.php"><strong>Chercher</strong></a> - chercher un utilisateur
   </li>
   <li>
-    <a href="http://localhost/APP/adminSpace/secure/adminHome.php"><strong>Gestion administrateur<strong> - reservé admin
+  <a href="FAQAdmin.php"><strong> Gérer FAQ</strong> </li>
+  <li>
+    <a href="adminHome.php"><strong>Gestion administrateur<strong> - reservé admin
   </li>
 </ul>
 

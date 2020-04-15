@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 12 avr. 2020 à 14:02
+-- Généré le :  mer. 15 avr. 2020 à 21:44
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -25,20 +25,47 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `admin`
+-- Structure de la table `administrator`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
+DROP TABLE IF EXISTS `administrator`;
+CREATE TABLE IF NOT EXISTS `administrator` (
   `idAdmin` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(255) NOT NULL,
-  `lastName` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `birthDate` date NOT NULL,
-  `gender` varchar(255) NOT NULL,
-  `adminPassword` text NOT NULL,
+  `idUser` int(11) NOT NULL,
   PRIMARY KEY (`idAdmin`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `administrator`
+--
+
+INSERT INTO `administrator` (`idAdmin`, `idUser`) VALUES
+(1, 10100);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ban`
+--
+
+DROP TABLE IF EXISTS `ban`;
+CREATE TABLE IF NOT EXISTS `ban` (
+  `idBan` int(11) NOT NULL AUTO_INCREMENT,
+  `idUser` int(11) NOT NULL,
+  `dateBan` date NOT NULL,
+  PRIMARY KEY (`idBan`)
+) ENGINE=MyISAM AUTO_INCREMENT=104 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `ban`
+--
+
+INSERT INTO `ban` (`idBan`, `idUser`, `dateBan`) VALUES
+(103, 10103, '2020-04-15'),
+(89, 10055, '2020-04-15'),
+(99, 10059, '2020-04-15'),
+(90, 10056, '2020-04-15'),
+(91, 10054, '2020-04-15');
 
 -- --------------------------------------------------------
 
@@ -68,7 +95,18 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `textAnswer` text NOT NULL,
   `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`idQuestion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `faq`
+--
+
+INSERT INTO `faq` (`idQuestion`, `textQuestion`, `textAnswer`, `isDeleted`) VALUES
+(1, 'Ma question ?', 'Ma razeazeaze', 1),
+(2, 'quesetion', 'aezaze', 0),
+(3, 'question', 'Rponse', 1),
+(4, 'aze', 'aze', 1),
+(5, 'qscf', 'qsvqbqbbqqb', 1);
 
 -- --------------------------------------------------------
 
@@ -90,21 +128,55 @@ CREATE TABLE IF NOT EXISTS `forum` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `keyproduct`
+--
+
+DROP TABLE IF EXISTS `keyproduct`;
+CREATE TABLE IF NOT EXISTS `keyproduct` (
+  `idKey` int(11) NOT NULL AUTO_INCREMENT,
+  `keyProd` int(8) NOT NULL,
+  PRIMARY KEY (`idKey`)
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `keyproduct`
+--
+
+INSERT INTO `keyproduct` (`idKey`, `keyProd`) VALUES
+(27, 12334),
+(26, 29383),
+(25, 123);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `manager`
 --
 
 DROP TABLE IF EXISTS `manager`;
 CREATE TABLE IF NOT EXISTS `manager` (
   `idManager` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(255) NOT NULL,
-  `lastName` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `birthDate` date NOT NULL,
-  `gender` varchar(255) NOT NULL,
+  `idUser` int(11) NOT NULL,
   `productKey` varchar(255) NOT NULL,
-  `managerPassword` text NOT NULL,
   PRIMARY KEY (`idManager`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `manager`
+--
+
+INSERT INTO `manager` (`idManager`, `idUser`, `productKey`) VALUES
+(11, 10055, '12334'),
+(12, 10058, '123'),
+(13, 10062, '123'),
+(15, 10063, '123'),
+(16, 10064, '123'),
+(17, 10067, '123'),
+(18, 10102, '123'),
+(19, 10102, '123'),
+(20, 10103, '123'),
+(21, 10103, '123'),
+(22, 10104, '123');
 
 -- --------------------------------------------------------
 
@@ -120,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `messaging` (
   `idWritter` int(11) NOT NULL,
   `idReceiver` int(11) NOT NULL,
   PRIMARY KEY (`idMessage`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `messaging`
@@ -175,7 +247,8 @@ INSERT INTO `messaging` (`idMessage`, `textMessage`, `date`, `idWritter`, `idRec
 (59, 'adafg', '2020-04-12 00:20:57', 5, 5),
 (60, 'dzada', '2020-04-12 00:21:00', 5, 5),
 (61, 'salut!', '2020-04-12 16:00:46', 14, 5),
-(62, 'salut zaeaz', '2020-04-12 16:00:59', 14, 12);
+(62, 'salut zaeaz', '2020-04-12 16:00:59', 14, 12),
+(63, 'Jérémy', '2020-04-12 20:21:21', 16, 13);
 
 -- --------------------------------------------------------
 
@@ -208,6 +281,7 @@ CREATE TABLE IF NOT EXISTS `modifyfaq` (
   `questionAfterModif` text NOT NULL,
   `answerAfterModif` text NOT NULL,
   `date` datetime NOT NULL,
+  `idDeleted` int(11) NOT NULL,
   PRIMARY KEY (`idModification`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -246,21 +320,33 @@ CREATE TABLE IF NOT EXISTS `user` (
   `userPassword` text NOT NULL,
   `subDate` date NOT NULL,
   `age` int(11) NOT NULL,
+  `allow` int(1) NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10105 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`idUser`, `firstName`, `lastName`, `email`, `birthDate`, `gender`, `userPassword`, `subDate`, `age`) VALUES
-(5, 'arnaud5', 'Guilhamat5', 'arnaud.guilhamat@sfr.fr', '2020-03-30', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
-(6, 'arnaud6', 'Guilhamat6', 'arnaud.guilhamat@isep.fr', '2020-03-30', 'Autre', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
-(7, 'arnaud7', 'Guilhamat7', 'guilhamat.arnaud@gmail.com', '2020-04-01', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
-(10, 'arnaud10', 'Guilhamat8', 'a.gui@makl.co', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
-(11, 'jeanb', 'dadaa', 'j.dad@g.m', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
-(12, 'arnaud', 'Guilhamat', 'zaza.zaz@da.com', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', -1),
-(13, 'arnaud', 'Guilhamat', 'grezq@afa.f', '2009-12-28', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', 10);
+INSERT INTO `user` (`idUser`, `firstName`, `lastName`, `email`, `birthDate`, `gender`, `userPassword`, `subDate`, `age`, `allow`) VALUES
+(10053, 'Jérémy', 'Iglicki', 'Jeremy.iglicki@gmail.com', '2020-04-09', 'aze', 'aze', '2020-04-15', 12, 0),
+(10054, 'Jeanlageou', 'azoeka', 'adre@z', '2020-05-01', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-14', -1, 0),
+(10055, 'Jérémy', 'Iglicki', 'ki@gmail.com', '2020-04-24', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-14', -1, 0),
+(10056, 'jean', 'lagourde', 'jean@lagourde', '2020-04-03', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10057, 'kraline', 'ch', 'krla@a', '2020-04-03', 'Autre', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10058, 'Iglicki', 'Jeremy', 'jeanlazerazrarde@gmail.com', '2020-04-23', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10059, 'iglicki', 'jeremy', 'jereki@gmail.com', '2020-04-09', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10060, 'Jérémy', 'Iglicki', 'Jeremlicki@gmail.com', '2020-04-10', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10061, 'Jérémy', 'Iglicki', 'Jicki@gmail.com', '2020-04-03', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10064, 'Jérémy', 'Iglicki', 'azeazeazeaficki@gmail.com', '2020-04-03', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10065, 'aze', 'aze', 'azeaze@hg', '2020-04-18', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10066, 'Jérémy', 'Iglicki', 'Jerazeazeglicki@gmail.com', '2020-04-03', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10067, 'aze', 'aze', 'azeqsdaze@tg', '2020-04-17', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10100, 'admin', 'admin', 'admin@admin', '1990-10-03', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2020-04-29', 30, 2),
+(10101, 'Jérémy', 'Iglicki', 'Jerazeeazeicki@gmail.com', '2020-04-22', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10102, 'aze', 'aze', 'azeazfcazaze@qs', '2020-04-09', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10103, 'aze', 'aze', 'azeaazezfcazaze@qs', '2020-04-09', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 1),
+(10104, 'Jérémy', 'Iglicki', 'Jerejdjddjki@gmail.com', '2020-04-02', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
