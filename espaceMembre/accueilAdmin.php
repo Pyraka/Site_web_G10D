@@ -11,14 +11,14 @@ while ($donnees = $reponse1->fetch()){
         header('Location: accueilAdmin.php');
     }
 }
-while ($donnees = $reponse0->fetch()){
+while ($donnees = $reponse->fetch()){
     if (isset($_POST['supprimer' . $donnees['idQuestion']])){
         $requser = $bdd->prepare("UPDATE faq SET isDeleted = 1 WHERE idQuestion = ?"); 
         $requser->execute(array($donnees['idQuestion']));
         header('Location: accueilAdmin.php');
     }
 }
-
+$reponse = $bdd->query('SELECT * FROM faq WHERE isDeleted = 0 ORDER BY idQuestion DESC');
 $reponse1 = $bdd->query('SELECT * FROM faq WHERE isDeleted = 1 ORDER BY idQuestion DESC');
 ?>
 
@@ -57,7 +57,8 @@ while ($donnees = $reponse->fetch())
     <div>
         <p><strong><?php echo $donnees['textQuestion'];?></strong></p>
         <p><?php echo $donnees['textAnswer'];?></p>
-        <a href="">Modifier</a>
+        
+        <a href="modifier.php?id=<?= $donnees['idQuestion'] ?>"><button>modifier</button></a>
         <form method="post">
             <input type="submit" name="supprimer<?=$donnees['idQuestion']?>" value="Supprimer">
         </form>

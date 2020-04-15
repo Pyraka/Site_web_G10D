@@ -1,68 +1,79 @@
 <?php
-try
-{
-// On se connecte à MySQL
-    $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8',
-        'root','');
-}
-catch(Exception $e)
-{
-// En cas d'erreur, on affiche un message et on arrête tout
-    die('Erreur : '.$e->getMessage());
-}
-$idQuestion=isset($_GET['idQuestion']);
-$textQuestion=isset($_POST['textQuestion'])?$_POST['textQuestion']: NULL;
-$idQuestion=isset($_POST['idQuestion'])?$_POST['idQuestion']: NULL;
-$textAnswer=isset($_POST['textAnswer'])?$_POST['textAnswer']: NULL;
+include('configuration.php');
 
-if (isset($_POST['modifier_faq'])){
-    $response=$bdd->prepare('UPDATE faq SET textQuestion= , textAnswer= ? WHERE idQuestion= ?');
-    $response->execute(array($textQuestion,$textAnswer));
+if (!isset($_GET['id']) OR $_GET['id'] < 1){
+  header('Location: accueilAdmin.php');
+}
+
+if (!empty($_POST)){
+  $valid = true;
+
+
+  if (isset($_POST['modifyQuestion'])){
+    $question = htmlspecialchars(trim($_POST['textQuestion']));
+    $answer = htmlspecialchars(trim($_POST['textAnswer']));
+
+    if(empty($question)){
+      $valid = false;
+      $er_question = "Veuillez mettre une question";
+    }
+
+    if(empty($answer)){
+      $valid = false;
+      $er_answer = 'Veuillez mettre une réponse';
+    }
+  }
+
+  if($valid){
+
+    $requser = $bdd->prepare("UPDATE faq SET textQuestion = ?, textAnswer= ? WHERE idQuestion= ?");
+    $requser->execute(array($question, $answer, $_GET['id']));
+    header('Location: accueilAdmin.php');
+
+  }
 
 }
+
+
+$requser = $bdd->prepare("SELECT * from faq WHERE idQuestion = ?");
+$requser->execute(array($_GET['id']));
+$reponse = $requser->fetch();
 
 ?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="style.css">
-
-
+    <title>Modifier une question</title>
 </head>
-<body>
-<div class="faq_edit">
-    <?php
-    try
-    {
-// On se connecte à MySQL
-        $bdd = new PDO('mysql:host=localhost;dbname=infinite_;charset=utf8',
-            'root','');
-    }
-    catch(Exception $e)
-    {
-// En cas d'erreur, on affiche un message et on arrête tout
-        die('Erreur : '.$e->getMessage());
-    }
 
-    $reponse = $bdd->query('SELECT * FROM faq ');
-    $textQuestion=isset($_POST['textQuestion'])?$_POST['textQuestion']: NULL;
-    $idQuestion=isset($_POST['idQuestion'])?$_POST['idQuestion']: NULL;
-    $textAnswer=isset($_POST['textAnswer'])?$_POST['textAnswer']: NULL;
-    while ($donnees = $reponse->fetch())
-    {
+    <body>
+    <form method="post">
 
-        echo '<div class="faq"><form action="modifier.php?faq=',$idQuestion,'" method="post">
-    <div class="question>"<span>Question:<br><input type="text" name="question" size="65" value="', htmlspecialchars($donnees['textQuestion']),'" /></span></div> <br /><br>
-    <div class="reponse">Reponse:<br> <input type="text" name="reponse" size="65" value="', htmlspecialchars($donnees['textAnswer']),'" /></div><br>
-    <input type="submit" name="supprimer_faq" value="Supprimer faq"/>  <input type="submit" name="modifier_faq" value="valider les changements"/>
-    </form></div> <br><br>
-    ';
+        <p> <strong>MODIFIER UNE QUESTION</strong><br/><br>
+            <?php
+            if (isset($er_question)){
+                ?>
+                <div><?= $er_question ?></div>
+                <?php
+            }
+            ?>
+            <label for="textQuestion"></label><br> <textarea placeholder="Insérez une question..."name="textQuestion" id="textQuestion" rows="5" cols="70"><?php if (isset($question)){echo $question;}else{echo $reponse['textQuestion'];} ?></textarea><br><br />
+            <?php
+            if (isset($er_answer)){
+                ?>
+                <div><?= $er_answer ?></div>
+                <?php
+            }
+            ?>
+            <label for="textAnswer"></label><br> <textarea  placeholder="Insérez une réponse..." name="textAnswer" id="textAnswer" rows="5" cols="70"><?php if (isset($answer)){echo $answer;}else{echo $reponse['textAnswer'];} ?></textarea><br><br />
+            <input type="submit" name="modifyQuestion" value="Modifier" />
+        </p>
+    </form>
 
-    }
-    ?>
 
-</div>
-
-</body>
-
+    <p><a href="accueilAdmin.php">Retour aux faq</a> </p>
+    </body>
 </html>
