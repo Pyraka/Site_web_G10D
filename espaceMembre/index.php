@@ -12,6 +12,9 @@ include "templates/header.php"; ?>
   <li>
     <a href="read.php"><strong>Chercher</strong></a> - chercher un utilisateur
   </li>
+  <li>
+    <a href="accueilAdmin.php"><strong>zdgzgqg</strong></a> - chercher un utilisateur
+  </li>
   
 </ul>
 

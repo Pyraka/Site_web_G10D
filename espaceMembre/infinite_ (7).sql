@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 12 avr. 2020 à 14:02
+-- Généré le :  mer. 15 avr. 2020 à 13:07
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -68,24 +68,83 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `textAnswer` text NOT NULL,
   `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`idQuestion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `faq`
+--
+
+INSERT INTO `faq` (`idQuestion`, `textQuestion`, `textAnswer`, `isDeleted`) VALUES
+(1, 'premiere question', 'premiere rep', 1),
+(2, 'deuxieme question', 'deuxieme rep', 1),
+(3, '3 ee', 'dadazda', 0),
+(4, 'dazdadad', 'afgzgzg', 0),
+(5, 'premiere entrée', 'deuxieme entrée', 0),
+(6, 'testquestion', 'testanswer', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `forum`
+-- Structure de la table `forum_comments`
 --
 
-DROP TABLE IF EXISTS `forum`;
-CREATE TABLE IF NOT EXISTS `forum` (
-  `idQuestion` int(11) NOT NULL AUTO_INCREMENT,
-  `titleQuestion` text NOT NULL,
-  `textQuestion` text NOT NULL,
+DROP TABLE IF EXISTS `forum_comments`;
+CREATE TABLE IF NOT EXISTS `forum_comments` (
+  `idComment` int(11) NOT NULL AUTO_INCREMENT,
+  `idTopic` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `idWriter` int(11) NOT NULL,
-  `isDeleted` tinyint(1) NOT NULL,
-  PRIMARY KEY (`idQuestion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `text` text NOT NULL,
+  PRIMARY KEY (`idComment`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `forum_comments`
+--
+
+INSERT INTO `forum_comments` (`idComment`, `idTopic`, `idUser`, `date`, `text`) VALUES
+(1, 1, 5, '2020-04-09 00:10:00', 'text premier'),
+(2, 1, 6, '2020-04-10 01:00:00', 'je suis d\'accord'),
+(3, 2, 5, '2020-04-12 00:00:00', 'gz\"gqzG'),
+(4, 4, 5, '2020-04-14 19:31:04', 'aa'),
+(5, 4, 5, '2020-04-14 19:31:23', 'aa'),
+(6, 4, 5, '2020-04-14 19:32:45', 'zaz'),
+(7, 4, 5, '2020-04-14 19:33:04', 'eazer'),
+(8, 4, 5, '2020-04-14 19:33:48', 'eazer'),
+(9, 4, 5, '2020-04-14 19:38:59', 'aaza'),
+(10, 4, 5, '2020-04-14 19:39:07', 'nouveau message'),
+(11, 4, 5, '2020-04-14 19:41:31', 'éé'),
+(12, 4, 5, '2020-04-14 19:42:24', '&lt;script&gt;alert(&quot;ok&quot;)&lt;/script&gt;'),
+(13, 6, 5, '2020-04-14 20:28:57', 'message');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `forum_topic`
+--
+
+DROP TABLE IF EXISTS `forum_topic`;
+CREATE TABLE IF NOT EXISTS `forum_topic` (
+  `idTopic` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `date` datetime NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `isClosed` tinyint(1) NOT NULL,
+  PRIMARY KEY (`idTopic`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `forum_topic`
+--
+
+INSERT INTO `forum_topic` (`idTopic`, `title`, `content`, `date`, `idUser`, `isClosed`) VALUES
+(1, 'titre topic 1', 'contenu question', '2020-04-01 00:00:00', 5, 0),
+(2, 'titre questio 2', 'ceci est la quesiton 2', '2020-04-02 00:00:00', 6, 0),
+(3, 'ques 3', 'texte quest 3', '2020-04-03 00:00:00', 5, 1),
+(4, 'titre', 'contenu', '2020-04-14 18:18:06', 5, 0),
+(5, '&lt;script&gt;alert(&quot;ok&quot;)&lt;/script&gt;', '&lt;script&gt;alert(&quot;ok&quot;)&lt;/script&gt;', '2020-04-14 19:42:40', 5, 0),
+(6, 'nouveau sujet', 'texte', '2020-04-14 20:28:39', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -120,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `messaging` (
   `idWritter` int(11) NOT NULL,
   `idReceiver` int(11) NOT NULL,
   PRIMARY KEY (`idMessage`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `messaging`
@@ -175,7 +234,10 @@ INSERT INTO `messaging` (`idMessage`, `textMessage`, `date`, `idWritter`, `idRec
 (59, 'adafg', '2020-04-12 00:20:57', 5, 5),
 (60, 'dzada', '2020-04-12 00:21:00', 5, 5),
 (61, 'salut!', '2020-04-12 16:00:46', 14, 5),
-(62, 'salut zaeaz', '2020-04-12 16:00:59', 14, 12);
+(62, 'salut zaeaz', '2020-04-12 16:00:59', 14, 12),
+(64, 'assa', '2020-04-14 19:54:03', 5, 10),
+(67, 'ddad', '2020-04-14 19:55:31', 5, 10),
+(68, '&lt;script&gt;alert(&quot;ok&quot;)&lt;/script&gt;', '2020-04-14 20:01:24', 5, 6);
 
 -- --------------------------------------------------------
 
@@ -247,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `subDate` date NOT NULL,
   `age` int(11) NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
@@ -260,7 +322,11 @@ INSERT INTO `user` (`idUser`, `firstName`, `lastName`, `email`, `birthDate`, `ge
 (10, 'arnaud10', 'Guilhamat8', 'a.gui@makl.co', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
 (11, 'jeanb', 'dadaa', 'j.dad@g.m', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0),
 (12, 'arnaud', 'Guilhamat', 'zaza.zaz@da.com', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', -1),
-(13, 'arnaud', 'Guilhamat', 'grezq@afa.f', '2009-12-28', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', 10);
+(13, 'arnaud', 'Guilhamat', 'grezq@afa.f', '2009-12-28', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', 10),
+(15, 'arnaud', 'Guilhamat', 'aa.aa@a.f', '1999-01-07', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', 21),
+(16, 'arnaud', 'Guilhamat', 'az.sa@sa', '2020-03-30', 'Femme', '0cc175b9c0f1b6a831c399e269772661', '2020-04-12', 0),
+(17, 'arnaud', 'Guilhamat', 'azdaz@sa', '2021-01-05', 'Autre', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', -1),
+(18, 'afaf', 'dazafa', 'dazdadaz@', '2020-04-01', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-01', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -40,7 +40,7 @@
         <input type="submit" style="align-content: center">
     </form>
 </div>
-<p><a href="Index.php">Accueil</a> </p>
+<p><a href="accueilAdmin.php">Accueil</a> </p>
 </body>
 </html>
 
