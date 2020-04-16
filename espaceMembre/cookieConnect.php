@@ -11,6 +11,7 @@ if (!isset($_SESSION['id']) AND isset($_COOKIE['email'], $_COOKIE['password']) A
 	 $_SESSION['id'] = $userinfo['idUser'];
 	 $_SESSION['pseudo'] = $userinfo['firstName'];
 	 $_SESSION['mail'] = $userinfo['email'];
+	 $_SESSION['photo'] = $userinfo['idImage'];
 	}
 }
 

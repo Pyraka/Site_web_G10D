@@ -26,12 +26,16 @@ function assignFirstLastName($id){
     <?php
       require('templates/header.php');    
       ?>
+      <div class="bodyForum">
       <h1 style="text-align: center;">Forum</h1>
       <?php
       if (isset($_SESSION['id'])){
         ?>
-        <a href="createTopic.php" style="">Creer un nouveau sujet</a>
-        <?php
+          <div class="creersujet">
+              <a href="createTopic.php" >Creer un nouveau sujet</a>
+          </div>
+
+              <?php
       }
       else{
         ?>
@@ -41,34 +45,38 @@ function assignFirstLastName($id){
       }
       ?>
       
-      
-      <table style="margin-top: 10px;">
-        <tr>
-          <th>Titre</th>
-          <th>Date</th>
-          <th>Par</th>
-        </tr>
-        <?php
-        foreach ($reponse as $key) {
-          ?>
-          <tr>
-            <td>
-              <a href="topic.php?id=<?=$key['idTopic']?>"><?= $key['title'] ?></a>
-            </td>
-            <td>
-              <?= $key['date_c'] ?>
-            </td>
-            <td>
-              <?= assignFirstLastName($key['idUser']); ?>
-            </td>
-          </tr>
-        <?php } ?>
-      </table>
+      <div class="tableforum" >
+          <table style="margin-top: 10px;">
+              <div class="contenuforum" style="">
+                  <tr style="background:linear-gradient(#8BACED,white)">
+                      <th>Titre</th>
+                      <th>Date</th>
+                      <th>Par</th>
+                  </tr>
+              <?php
+              foreach ($reponse as $key) {
+                  ?>
+                  <tr >
+                      <td style="text-decoration: none;text-align: center;font-family: 'Franklin Gothic Medium'">
+                          <a href="topic.php?id=<?=$key['idTopic']?>"><?= $key['title'] ?></a>
+                      </td>
+                      <td>
+                          <?= $key['date_c'] ?>
+                      </td>
+                      <td>
+                          <?= assignFirstLastName($key['idUser']); ?>
+                      </td>
+                  </tr>
+              </div>
+              <?php } ?>
+          </table>
+      </div>
+
       
          
           
           
-        
+        </div>
       <?php include('templates/footer.php'); ?>
   </body>
 </html>

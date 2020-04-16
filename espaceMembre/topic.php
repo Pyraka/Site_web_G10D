@@ -59,9 +59,10 @@ function assignFirstLastName($id){
     <?php
       require('templates/header.php');    
       ?>
+      <div class="bodyForum">
       <h1 style="text-align: center;">Sujet : <?= $reponse['title'] ?></h1>
-      <div style="background: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); padding: 15px 5px; border-radius: 20px">
-      	<h3>Contenu</h3>
+      <div style="background:linear-gradient(cornflowerblue,white); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); padding: 15px 5px; border-radius: 20px">
+      	<h3><strong>Contenu</strong></h3>
       	<div style="border-top: 2px solid #eee; padding-top: 10px;"><?= $reponse['content'] ?></div>
       	<div style="color: grey; font-size: 10px; text-align: right;">
       		<?= $reponse['date_c'] ?>
@@ -74,7 +75,7 @@ function assignFirstLastName($id){
       <?php
       if (isset($_SESSION['id'])){
       	?>
-	      <div style="background: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); padding: 15px 5px; border-radius: 20px; margin-top: 10px;">
+	      <div style=" background:linear-gradient(cornflowerblue,white);box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); padding: 15px 5px; border-radius: 20px; margin-top: 10px;">
 	      	<h3>Participer à la discussion</h3>
 	      	
 	      	<?php
@@ -86,19 +87,13 @@ function assignFirstLastName($id){
 	        ?>
 
 	      	<form method="POST">
-
-
-		      	<div>
+		      	<div class="participerdiscussion">
 		      		<textarea rows="4" name="text"></textarea>
-		      	</div>
-		      	<div>
+		      	</div><br/>
+		      	<div class="boutonparticiper">
 		      		<button type="submit" name="createMessage">Envoyer</button>
 		      	</div>
-
 		    </form>
-	            
-	      
-	         
 	       </div>
        <?php 
    		}else{
@@ -110,11 +105,9 @@ function assignFirstLastName($id){
       ?>
 
 
-      <div style="background: white; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); padding: 15px 5px; border-radius: 20px; margin-top: 10px;">
-      	<h3>Commentaires</h3>
-
-	      <table>
-	        
+      <div style="background: linear-gradient(cornflowerblue,white); box-shadow: 0 5px 15px rgba(35, 0, 15, 0.15); padding: 15px 5px; border-radius: 20px; margin-top: 10px;">
+      	<h3><strong>Commentaires :</strong></h3>
+	      <table style="size: 15px">
 	        <?php
 	        foreach ($reponse2 as $key) {
 	          ?>
@@ -123,21 +116,19 @@ function assignFirstLastName($id){
 	              <?= $key['date_c'] ?>
 	            </td>
 	            <td>
-	              <?= " De ", assignFirstLastName($key['idUser']); ?>
+	              <?= "==>", assignFirstLastName($key['idUser']); ?>
 	            </td>
-	            <td>
-	              <?= $key['text'] ?>
+	            <td style="font-family: 'Sitka Small'  ">
+	              <?=": ", $key['text'] ?>
 	            </td>
 	          </tr>
 	        <?php } ?>
 	      </table>
-            
-      
-         
        </div>  
           
-        
-      <?php include('templates/footer.php');?>
+
+   </div>
+   <?php include('templates/footer.php'); ?>
   </body>
 </html>
 

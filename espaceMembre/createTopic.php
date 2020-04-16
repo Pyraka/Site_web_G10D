@@ -46,9 +46,11 @@ if (!empty($_POST)){
     <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
+  <div class="creationtopic">
     <?php
       require('templates/header.php');    
       ?>
+      <div class="bodyForum">
       <h1 style="text-align: center;">Créer un sujet</h1>
 
       <form method="POST">
@@ -60,9 +62,9 @@ if (!empty($_POST)){
         }
         ?>
 
-        <div>
+        <div class="titretopic">
           <input type="text" name="title" placeholder="Votre titre" value="<?php if (isset($title)){ echo $title;} ?>">
-        </div>
+        </div><br/>
 
         <?php
         if (isset($er_content)){
@@ -72,24 +74,11 @@ if (!empty($_POST)){
         }
         ?>
 
-        <div>
+        <div class="questiontopic">
           <textarea rows="4" placeholder="Décrivez votre question" name="content"><?php if(isset($content)){echo $content;} ?></textarea>
-        </div>
-        <div>
-          <button type="submit" name="createTopic">Envoyer</button>
+          <br/><br/><button type="submit" name="createTopic">Envoyer</button>
         </div>
         
-
-
-
-
-
-
-
-
-
-
-
 
 
       </form>
@@ -98,7 +87,8 @@ if (!empty($_POST)){
          
           
           
-        
+        </div>
       <?php include('templates/footer.php');?>
+  </div>
   </body>
 </html>

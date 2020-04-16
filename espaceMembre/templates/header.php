@@ -34,7 +34,7 @@ else
 <body>
 <header>
 				<div role="banner">
-						<a href="index.php" id="LogoSite" title="Medi-sys - Systèmes médicaux"><img src="images/Logo.png" id="LogoHome" /></a>
+						<a href="index.php" id="LogoSite" title="Medi-sys - Systèmes médicaux"><img src="images/Infinite_measures.gif" id="LogoHome" /></a>
 					<nav role="navigation" class="menu">
 						<br/>
 						<ul class="inline" id="menuPrincipal">
@@ -44,12 +44,12 @@ else
 								<span class="centerLogo">Accueil</span></a>
 							</li>
 							<li>
-								<a href="QuiSommesNous.html">
+								<a href="QuiSommesNous.php">
 								<img src="images/logoWhoAreWe.png" class="logoMenu" />
 								<span class="centerLogo">Qui sommes-nous?</span></a>
 							</li>
 							<li>
-								<a href="">
+								<a href="information_system.php">
 								<img src="images/logoSystem.png" class="logoMenu" />
 								<span class="centerLogo">Information système</span></a>
 							</li>
@@ -72,12 +72,16 @@ else
 						if (isset($connecte) AND $connecte == 1)
 						{
 
+							$reqImage = $bdd->prepare("SELECT imageDirectory FROM imageprofil WHERE idImage=?");
+							$reqImage -> execute(array($_SESSION['photo']));
+							$imageProfil = $reqImage->fetch();
+
 						?>
 						<ul class="inline" id="menuAuthentification">
 							<a href="accueilMessagerie.php" id="LogoSite"><img src="images/logoMessagerie.png" id="LogoProfile" /></a>
 						</ul>
 						<ul class="inline" id="menuAuthentification">
-							<a href="<?php echo 'profil.php?id='.$_SESSION['id']; ?>" id="LogoSite"><img src="images/user.jpg" id="LogoProfile" /></a>
+							<a href="<?php echo 'profil.php?id='.$_SESSION['id']; ?>" id="LogoSite"><img src=<?= $imageProfil['imageDirectory'];?> id="LogoProfile" /></a>
 						</ul>
 						<?php } 
 						else 
