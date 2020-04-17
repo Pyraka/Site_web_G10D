@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 16 avr. 2020 à 18:17
+-- Généré le :  ven. 17 avr. 2020 à 13:18
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -25,21 +25,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `admin`
+-- Structure de la table `administrator`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
+DROP TABLE IF EXISTS `administrator`;
+CREATE TABLE IF NOT EXISTS `administrator` (
   `idAdmin` int(11) NOT NULL AUTO_INCREMENT,
   `idUser` int(11) NOT NULL,
   PRIMARY KEY (`idAdmin`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `admin`
+-- Déchargement des données de la table `administrator`
 --
 
-INSERT INTO `admin` (`idAdmin`, `idUser`) VALUES
+INSERT INTO `administrator` (`idAdmin`, `idUser`) VALUES
 (1, 10100);
 
 -- --------------------------------------------------------
@@ -54,7 +54,17 @@ CREATE TABLE IF NOT EXISTS `ban` (
   `idUser` int(11) NOT NULL,
   `dateBan` date NOT NULL,
   PRIMARY KEY (`idBan`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `ban`
+--
+
+INSERT INTO `ban` (`idBan`, `idUser`, `dateBan`) VALUES
+(114, 10102, '2020-04-17'),
+(103, 10103, '2020-04-15'),
+(112, 10055, '2020-04-16'),
+(113, 10053, '2020-04-17');
 
 -- --------------------------------------------------------
 
@@ -69,19 +79,26 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `textAnswer` text NOT NULL,
   `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`idQuestion`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `faq`
 --
 
 INSERT INTO `faq` (`idQuestion`, `textQuestion`, `textAnswer`, `isDeleted`) VALUES
-(1, 'premiere question', 'premiere rep', 1),
-(2, 'deuxieme question', 'deuxieme rep', 1),
-(3, '3 ee', 'dadazda', 0),
-(4, 'dazdadad', 'afgzgzg (modif)', 1),
-(5, 'premiere entrée', 'deuxieme entrée dazdz', 0),
-(6, 'Question modif (aead)', 'Repo modif', 1);
+(1, 'Ma question ?', 'Ma razeazeaze', 1),
+(2, 'quesetion', 'aezaze', 1),
+(3, 'question', 'Rponse', 1),
+(4, 'aze', 'aze', 1),
+(5, 'qscf', 'qsvqbqbbqqb', 1),
+(6, 'aze', 'aze', 1),
+(7, 'aze', 'aze', 1),
+(8, 'aze', 'azeaze', 1),
+(9, 'aze', 'azeaze', 1),
+(10, 'aze', 'aze', 1),
+(11, 'aze', 'aze', 1),
+(12, 'Voici une question très souvent posée : \r\n\r\nQuelle est la couleur du cheval blanc d\'Henri IV ?', 'La réponse est pourtant évidente:\r\n\r\nLe cheval blanc d\'Henri IV est BLANC !', 0),
+(13, 'Comment se déroulent les tests ?', 'Les tests se déroule de façon simple avec un gestionnaire qui vous sera attribué mais qui n\'est pas unique. \r\nPour ce qui est du test en lui-même, je vous invite à consulter la rubrique &quot;informations systèmes&quot;.', 0);
 
 -- --------------------------------------------------------
 
@@ -97,28 +114,15 @@ CREATE TABLE IF NOT EXISTS `forum_comments` (
   `date` datetime NOT NULL,
   `text` text NOT NULL,
   PRIMARY KEY (`idComment`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `forum_comments`
 --
 
 INSERT INTO `forum_comments` (`idComment`, `idTopic`, `idUser`, `date`, `text`) VALUES
-(1, 1, 5, '2020-04-09 00:10:00', 'text premier'),
-(2, 1, 6, '2020-04-10 01:00:00', 'je suis d\'accord'),
-(3, 2, 5, '2020-04-12 00:00:00', 'gz\"gqzG'),
-(4, 4, 5, '2020-04-14 19:31:04', 'aa'),
-(5, 4, 5, '2020-04-14 19:31:23', 'aa'),
-(6, 4, 5, '2020-04-14 19:32:45', 'zaz'),
-(7, 4, 5, '2020-04-14 19:33:04', 'eazer'),
-(8, 4, 5, '2020-04-14 19:33:48', 'eazer'),
-(9, 4, 5, '2020-04-14 19:38:59', 'aaza'),
-(10, 4, 5, '2020-04-14 19:39:07', 'nouveau message'),
-(11, 4, 5, '2020-04-14 19:41:31', 'éé'),
-(12, 4, 5, '2020-04-14 19:42:24', '&lt;script&gt;alert(&quot;ok&quot;)&lt;/script&gt;'),
-(13, 6, 5, '2020-04-14 20:28:57', 'message'),
-(14, 6, 5, '2020-04-15 19:42:12', 'fafaz'),
-(15, 6, 5, '2020-04-16 19:05:34', 'zaz');
+(1, 1, 10100, '2020-04-17 09:49:32', 'Nous sommes le 17 mai'),
+(2, 1, 10102, '2020-04-17 11:57:29', 'qzfqwgwb');
 
 -- --------------------------------------------------------
 
@@ -133,21 +137,18 @@ CREATE TABLE IF NOT EXISTS `forum_topic` (
   `content` text NOT NULL,
   `date` datetime NOT NULL,
   `idUser` int(11) NOT NULL,
-  `isClosed` tinyint(1) NOT NULL,
+  `isClosed` tinyint(4) NOT NULL,
   PRIMARY KEY (`idTopic`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `forum_topic`
 --
 
 INSERT INTO `forum_topic` (`idTopic`, `title`, `content`, `date`, `idUser`, `isClosed`) VALUES
-(1, 'titre topic 1', 'contenu question', '2020-04-01 00:00:00', 5, 0),
-(2, 'titre questio 2', 'ceci est la quesiton 2', '2020-04-02 00:00:00', 6, 0),
-(3, 'ques 3', 'texte quest 3', '2020-04-03 00:00:00', 5, 1),
-(4, 'titre', 'contenu', '2020-04-14 18:18:06', 5, 0),
-(5, '&lt;script&gt;alert(&quot;ok&quot;)&lt;/script&gt;', '&lt;script&gt;alert(&quot;ok&quot;)&lt;/script&gt;', '2020-04-14 19:42:40', 5, 0),
-(6, 'nouveau sujet', 'texte', '2020-04-14 20:28:39', 5, 0);
+(1, 'Jour d\'aujourd\'hui', 'Quel jour sommes nous ?', '2020-04-17 09:48:46', 10100, 0),
+(2, 'Student', 'zqfv', '2020-04-17 11:57:23', 10102, 0),
+(3, 'erzer', 'zer', '2020-04-17 12:12:34', 10100, 0);
 
 -- --------------------------------------------------------
 
@@ -160,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `imageprofil` (
   `idImage` int(11) NOT NULL AUTO_INCREMENT,
   `imageDirectory` varchar(255) NOT NULL,
   PRIMARY KEY (`idImage`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `imageprofil`
@@ -168,9 +169,8 @@ CREATE TABLE IF NOT EXISTS `imageprofil` (
 
 INSERT INTO `imageprofil` (`idImage`, `imageDirectory`) VALUES
 (1, 'images/photoProfil/user.jpg'),
-(2, 'images/photoProfil/arnaud.jpg'),
-(3, 'images/photoProfil/nicolas.jpg'),
-(4, 'images/photoProfil/Capture1.PNG');
+(11, 'images/photoProfil/jeremy/jpg'),
+(12, 'images/photoProfil/jeremy.jpg');
 
 -- --------------------------------------------------------
 
@@ -181,9 +181,17 @@ INSERT INTO `imageprofil` (`idImage`, `imageDirectory`) VALUES
 DROP TABLE IF EXISTS `keyproduct`;
 CREATE TABLE IF NOT EXISTS `keyproduct` (
   `idKey` int(11) NOT NULL AUTO_INCREMENT,
-  `keyProd` int(11) NOT NULL,
+  `keyProd` int(8) NOT NULL,
   PRIMARY KEY (`idKey`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `keyproduct`
+--
+
+INSERT INTO `keyproduct` (`idKey`, `keyProd`) VALUES
+(30, 123344),
+(25, 123);
 
 -- --------------------------------------------------------
 
@@ -197,7 +205,24 @@ CREATE TABLE IF NOT EXISTS `manager` (
   `idUser` int(11) NOT NULL,
   `productKey` varchar(255) NOT NULL,
   PRIMARY KEY (`idManager`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `manager`
+--
+
+INSERT INTO `manager` (`idManager`, `idUser`, `productKey`) VALUES
+(11, 10055, '12334'),
+(12, 10058, '123'),
+(13, 10062, '123'),
+(15, 10063, '123'),
+(16, 10064, '123'),
+(17, 10067, '123'),
+(18, 10102, '123'),
+(19, 10102, '123'),
+(20, 10103, '123'),
+(21, 10103, '123'),
+(22, 10104, '123');
 
 -- --------------------------------------------------------
 
@@ -213,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `messaging` (
   `idWritter` int(11) NOT NULL,
   `idReceiver` int(11) NOT NULL,
   PRIMARY KEY (`idMessage`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `messaging`
@@ -269,10 +294,10 @@ INSERT INTO `messaging` (`idMessage`, `textMessage`, `date`, `idWritter`, `idRec
 (60, 'dzada', '2020-04-12 00:21:00', 5, 5),
 (61, 'salut!', '2020-04-12 16:00:46', 14, 5),
 (62, 'salut zaeaz', '2020-04-12 16:00:59', 14, 12),
-(64, 'assa', '2020-04-14 19:54:03', 5, 10),
-(67, 'ddad', '2020-04-14 19:55:31', 5, 10),
-(68, '&lt;script&gt;alert(&quot;ok&quot;)&lt;/script&gt;', '2020-04-14 20:01:24', 5, 6),
-(69, 'conversation', '2020-04-16 19:34:35', 5, 6);
+(63, 'Jérémy', '2020-04-12 20:21:21', 16, 13),
+(64, 'aze', '2020-04-16 21:27:00', 10100, 10055),
+(65, 'aze', '2020-04-16 21:27:11', 10100, 10100),
+(66, 'Bonjour administarteur', '2020-04-17 11:57:58', 10102, 10100);
 
 -- --------------------------------------------------------
 
@@ -305,15 +330,7 @@ CREATE TABLE IF NOT EXISTS `test` (
   `dateTest` datetime NOT NULL,
   `idUser` int(11) NOT NULL,
   PRIMARY KEY (`idTest`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `test`
---
-
-INSERT INTO `test` (`idTest`, `reactionTime`, `soundReproductionQuality`, `BPMAverage`, `temperatureAverage`, `dateTest`, `idUser`) VALUES
-(1, 20, 70, 60, 37, '2020-04-01 00:00:00', 5),
-(2, 30, 90, 100, 36, '2020-04-02 00:00:00', 5);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -332,28 +349,34 @@ CREATE TABLE IF NOT EXISTS `user` (
   `userPassword` text NOT NULL,
   `subDate` date NOT NULL,
   `age` int(11) NOT NULL,
-  `idImage` int(11) NOT NULL,
+  `allow` int(1) NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=10101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10106 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`idUser`, `firstName`, `lastName`, `email`, `birthDate`, `gender`, `userPassword`, `subDate`, `age`, `idImage`) VALUES
-(5, 'arnaud5', 'Guilhamat5', 'arnaud.guilhamat@sfr.fr', '2020-03-30', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0, 4),
-(6, 'arnaud6', 'Guilhamat6', 'arnaud.guilhamat@isep.fr', '2020-03-30', 'Autre', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0, 1),
-(10, 'arnaud10', 'Guilhamat8', 'a.gui@makl.co', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0, 1),
-(11, 'jeanb', 'dadaa', 'j.dad@g.m', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '0000-00-00', 0, 1),
-(12, 'arnaud', 'Guilhamat', 'zaza.zaz@da.com', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', -1, 1),
-(13, 'arnaud', 'Guilhamat', 'grezq@afa.f', '2009-12-28', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', 10, 1),
-(15, 'arnaud', 'Guilhamat', 'aa.aa@a.f', '1999-01-07', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', 21, 1),
-(16, 'arnaud', 'Guilhamat', 'az.sa@sa', '2020-03-30', 'Femme', '0cc175b9c0f1b6a831c399e269772661', '2020-04-12', 0, 1),
-(17, 'arnaud', 'Guilhamat', 'azdaz@sa', '2021-01-05', 'Autre', '4124bc0a9335c27f086f24ba207a4912', '2020-04-12', -1, 1),
-(18, 'afaf', 'dazafa', 'dazdadaz@', '2020-04-01', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-01', 0, 1),
-(24, 'arnaud', 'Guilhamat', 'guilhamat.arnaud@gmail.com', '2020-03-30', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-16', 0, 1),
-(25, 'arnaud', 'Guilhamat', 'fazfazfa@daza.fr', '2020-03-30', 'Femme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-16', -1, 2),
-(10100, 'Jerem', 'Iglicki', 'jerem@gmail.com', '2019-04-03', 'Homme', '4124bc0a9335c27f086f24ba207a4912', '2020-04-16', 12, 1);
+INSERT INTO `user` (`idUser`, `firstName`, `lastName`, `email`, `birthDate`, `gender`, `userPassword`, `subDate`, `age`, `allow`) VALUES
+(10053, 'Jérémy', 'Iglicki', 'Jeremy.iglicki@gmail.com', '2020-04-09', 'aze', 'aze', '2020-04-15', 12, 0),
+(10054, 'Jeanlageou', 'azoeka', 'adre@z', '2020-05-01', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-14', -1, 0),
+(10055, 'Jérémy', 'Iglicki', 'ki@gmail.com', '2020-04-24', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-14', -1, 0),
+(10056, 'jean', 'lagourde', 'jean@lagourde', '2020-04-03', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10057, 'kraline', 'ch', 'krla@a', '2020-04-03', 'Autre', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10058, 'Iglicki', 'Jeremy', 'jeanlazerazrarde@gmail.com', '2020-04-23', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10059, 'iglicki', 'jeremy', 'jereki@gmail.com', '2020-04-09', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10060, 'Jérémy', 'Iglicki', 'Jeremlicki@gmail.com', '2020-04-10', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10061, 'Jérémy', 'Iglicki', 'Jicki@gmail.com', '2020-04-03', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10064, 'Jérémy', 'Iglicki', 'azeazeazeaficki@gmail.com', '2020-04-03', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10065, 'aze', 'aze', 'azeaze@hg', '2020-04-18', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10066, 'Jérémy', 'Iglicki', 'Jerazeazeglicki@gmail.com', '2020-04-03', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10067, 'aze', 'aze', 'azeqsdaze@tg', '2020-04-17', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10100, 'admin', 'admin', 'admin@admin', '1990-10-03', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2020-04-29', 30, 2),
+(10101, 'Jérémy', 'Iglicki', 'Jerazeeazeicki@gmail.com', '2020-04-22', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10102, 'aze', 'aze', 'azeazfcazaze@qs', '2020-04-09', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 0),
+(10103, 'aze', 'aze', 'azeaazezfcazaze@qs', '2020-04-09', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 1),
+(10104, 'Jérémy', 'Iglicki', 'Jerejdjddjki@gmail.com', '2020-04-02', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-15', -1, 1),
+(10105, 'Jérémy', 'Iglicki', 'Jerelicki@gmail.com', '2020-04-23', 'Homme', '0a5b3913cbc9a9092311630e869b4442', '2020-04-17', -1, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
