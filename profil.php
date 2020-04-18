@@ -38,6 +38,7 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
          <br />
          <a href="editionprofil.php" class="linkProfil">Editer mon profil</a>
          <a href="deconnexion.php" class="linkProfil">Se déconnecter</a>
+         <a href="listResults.php?id=<?php echo($_SESSION['id']) ?>" class="linkProfil">Résultats</a>
          <?php
          }
          ?>
