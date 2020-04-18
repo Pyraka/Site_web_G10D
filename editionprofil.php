@@ -80,6 +80,10 @@ if(isset($_SESSION['id'])) {
          $_SESSION['photo'] = $selectedPhoto['idImage'];
          header('Location: profil.php?id='.$_SESSION['id']);
       }
+
+      $reqImage = $bdd->prepare("SELECT imageDirectory FROM imageprofil WHERE idImage=?");
+      $reqImage -> execute(array($_SESSION['photo']));
+      $imageProfil = $reqImage->fetch();
    }
 
 ?>

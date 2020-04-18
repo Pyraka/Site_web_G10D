@@ -24,8 +24,8 @@ if (isset($_POST['submit']) && isset($_POST['firstName']) AND isset($_POST['last
         else{
 
             // on ajoute s'il n'y a pas deja cette adresse mail dans la bdd
-            $requser1 = $bdd->prepare("INSERT INTO user(firstName, lastName, email, birthDate, gender, userPassword, subDate, age, idImage) VALUES(?, ?, ?, ?, ?, ?, NOW(), ?, 1)");
-            $requser1->execute(array($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['birthDate'], $_POST['gender'], md5($_POST['userPassword']), age($_POST['birthDate'])));
+            $requser1 = $bdd->prepare("INSERT INTO user(firstName, lastName, email, birthDate, gender, userPassword, subDate, age, idImage) VALUES(?, ?, ?, ?, ?, ?, NOW(), ?, ?)");
+            $requser1->execute(array($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['birthDate'], $_POST['gender'], md5($_POST['userPassword']), age($_POST['birthDate']), 1));
 
             // On refait une requete maintenant que l'utilisateur a été ajouté
             $requser->execute(array($_POST['email']));
@@ -34,8 +34,8 @@ if (isset($_POST['submit']) && isset($_POST['firstName']) AND isset($_POST['last
             // on connecte directement l'utilisateur grace aux variables de session
             $_SESSION['id'] = $utilisateur['idUser'];
             $_SESSION['email'] = $utilisateur['email'];
+            $_SESSION['photo'] = $utilisateur['idImage'];
             header("Location: profil.php?id=".$_SESSION['id']);
-
         }
 
         
