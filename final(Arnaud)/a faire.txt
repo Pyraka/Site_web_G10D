@@ -1,0 +1,6 @@
+- ajouter un utilisateur manuellement part un admin
+- pareil avec les clé produit ( pb vient du modele MVC)
+- impossible de mofifier une faq en tant qu'admin
+- manque à incorper les test et résultats AINSI que la messagerie 
+- bug de session start dans la faq 
+- rajouter "membre depuis DATE" dans le profil

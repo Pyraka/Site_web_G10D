@@ -1,0 +1,9 @@
+creation de req.modifyProfile + modifyProfile
+
+on ne peut plus modifier une adresse mail en une qui existe deja
+
+modif de manageUser et reqmanageuser
+
+modif de req.editionprofil (pour qu'on ne puisse pas modif avec une adresse deja utilisée)
+
+ajout de la function userExists dans functions
