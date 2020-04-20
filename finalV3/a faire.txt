@@ -1,4 +1,0 @@
-- impossible de mofifier une faq en tant qu'admin
-- bug de session start dans la faq 
-- rajouter "membre depuis DATE" dans le profil et l'age
-- mettre le retour a l'accueil au bon endroit dans l'inscirption gestionnaire (peut etre changer tous les retour d'accueil)
