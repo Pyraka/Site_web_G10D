@@ -33,11 +33,11 @@ $reponse1 = $bdd->query('SELECT * FROM faq WHERE isDeleted = 1 ORDER BY idQuesti
     </head>
     <?php require('templates/header.php'); ?>
     <h2 class="titleFaq">F.A.Q</h2>
-</div>
-
+<div class="underline"></div>
+<div class="faqbody">
 <nav>
-    <ul>
-        <li><a href="faqAdd.php">Ajouter une question</a> </li>
+    <ul style="list-style:none">
+        <li ><a href="faqAdd.php" style="text-decoration: none;color:rgb(161, 57, 202); "><strong>Ajouter une question</strong> </a> </li>
     </ul>
 </nav>
 <div class="faq_items">
@@ -46,7 +46,7 @@ $reponse1 = $bdd->query('SELECT * FROM faq WHERE isDeleted = 1 ORDER BY idQuesti
 
 
 
-<p style="text-align: center;">Questions en ligne</p>
+<p style="text-align: center;font-size : 1.2em"> <strong>Questions en ligne</strong></p>
 <?php
 while ($donnees = $reponse->fetch())
 {
@@ -55,7 +55,7 @@ while ($donnees = $reponse->fetch())
         <p><strong><?php echo $donnees['textQuestion'];?></strong></p>
         <p><?php echo $donnees['textAnswer'];?></p>
         
-        <a href="faqMod.php?id=<?= $donnees['idQuestion'] ?>"><button>modifier</button></a>
+        <a href="faqMod.php?id=<?= $donnees['idQuestion'] ?>"><button>Modifier</button></a>
         <form method="post">
             <input type="submit" name="supprimer<?=$donnees['idQuestion']?>" value="Supprimer">
         </form>
@@ -67,7 +67,7 @@ while ($donnees = $reponse->fetch())
     <?php
 }
 ?>
-<p style="text-align: center;">Questions supprimées</p>
+<p style="text-align: center;font-size : 1.2em"><strong>Questions supprimées</strong></p>
 <?php
 while ($donnees = $reponse1->fetch()){
     ?>
@@ -87,6 +87,7 @@ while ($donnees = $reponse1->fetch()){
 }
 
 ?>
+</div>
 </div>
 </body>
 

@@ -15,12 +15,15 @@
       ?>
       <div class="bodyForum">
         <h1 style="text-align: center;">Créer un sujet</h1>
-
+        <br>
+        <div class="underline"></div>
+<br>
+<div class="bodyCreate">
         <form method="POST">
           <?php
           if (isset($er_title)){
             ?>
-            <div><?= $er_title?></div>
+            <div id="er_title"><?= $er_title?></div>
             <?php
           }
           ?>
@@ -32,14 +35,15 @@
           <?php
           if (isset($er_content)){
             ?>
-            <div><?= $er_content ?></div>
+            <div id="er_content"><?= $er_content ?></div>
+            <br>
             <?php
           }
           ?>
 
           <div class="questiontopic">
             <textarea rows="4" placeholder="Décrivez votre question" name="content"><?php if(isset($content)){echo $content;} ?></textarea>
-            <br/><br/><button type="submit" name="createTopic">Envoyer</button>
+            <br/><br/><button id="buttonForum" type="submit" name="createTopic">Envoyer</button>
           </div>
           
 
@@ -53,6 +57,6 @@
       </div>
   </div>
   <a href="index.php" class="linkBack">Revenir à la page d'accueil</a>
-
+  </div>
       <?php require('templates/footer.php');?>
  

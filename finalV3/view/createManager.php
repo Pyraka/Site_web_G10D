@@ -1,4 +1,4 @@
-<?php require('../controller/reqUser/req.createUser.php') ?>
+<?php require('../controller/reqManager/req.createManager.php') ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -8,16 +8,17 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title> Inscription client</title>
+  <title> Inscription gestionnaire</title>
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <?php require("templates/header.php") ?>
-<h2 class="createTitle">S'inscrire</h2>
+
+<h2 class="createTitle">Inscription gestionnaire</h2>
 <div class="underline"></div>   
 
 <form method="post" class="formCreate">
-    <div class="firstPart">
+    <div class="firstPart"> 
         <label for="firstName">Prénom</label>
         <input type="text" name="firstName" id="firstName" placeholder="Prénom" required>
         <label for="lastName">Nom</label>
@@ -33,21 +34,21 @@
     </div>
     <div class="secondPart">
         <label for="userPassword">Mot de passe</label>
-        <input type="password" name="userPassword" id="userPassword" placeholder="Mot de passe" required>
+        <input type="password" name="userPassword" id="userPassword" placeholder="Mot de passe" required >
         <label for="mdp_verif">Vérification du mot de passe</label>
-        <input type="password" name="mdp_verif" id="mdp_verif" placeholder="Mot de passe" required>
-        <span id='message'></span> <br></br>
-        <input type="submit" name="submit" value="S'inscrire">
+        <input type="password" name="mdp_verif" id="mdp_verif" placeholder="Mot de passe" required >
+        <span id='message'></span>
+        <label for="productKey">Clé produit</label>
+        <input type="int" name="productKey" id="productKey" placeholder="XXXXXXXX" required><br></br>
     </div>
+    <input type="submit" name="submit" value="S'inscrire">
 </form>
 </br>
-<span class="box-registe"> Si vous êtes gestionnaire, l'inscription c'est <a href="createManager.php"><strong> ici </strong></a> </span>
-<p class="box-register">Vous avez déjà un compte ? <a href="connect.php"><strong>Se connecter</strong></a></p>
+<span> Si vous n'êtes pas gestionnaire, l'inscription c'est <a class="box-register" href="createCustomer.php"><strong> ici </strong></a> </span>
+<p>Vous avez déjà un compte ? <a class="box-register" href="connect.php"><strong>Se connecter</strong></a></p>
 </br>
-<a href="index.php"><strong> Retour à l'accueil</strong></a>
+<a id="accbox" href="index.php"><strong> Retour à l'accueil</strong></a>
 
 <script type="text/javascript" src="../js/checkPassword.js"></script>
-
-<?php require("templates/footer.php") ?>
-
+<?php require("templates/footer.php"); ?>
 

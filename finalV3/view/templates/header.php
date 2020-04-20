@@ -17,7 +17,7 @@ if(!isset($_SESSION['id']) OR  $_SESSION['id']!= 10100){
 
 <body>
 	<header>
-		<div role="banner">
+		<div role="banner" id="banner">
 			<a href="index.php" id="LogoSite" title="Medi-sys - Systèmes médicaux"><img src="images/Infinite_measures.png" id="LogoHome" /></a>
 				<nav role="navigation" class="menu">
 						<br/>

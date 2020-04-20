@@ -51,8 +51,9 @@ $reponse = $requser->fetch();
     <?php require('templates/header.php'); ?>
     <h2 class="titleFaq">Modifier question</h2>
     <form method="post">
-
-        <p> <strong>MODIFIER UNE QUESTION</strong><br/><br>
+    <div class="underline"></div>
+<div class="faqbody">
+        <p> <strong>MODIFIER UNE QUESTION</strong>
             <?php
             if (isset($er_question)){
                 ?>
@@ -74,6 +75,6 @@ $reponse = $requser->fetch();
     </form>
 
 
-    <p><a href="faqAdmin.php">Retour aux faq</a> </p>
+    <p><a class="box-nous" href="faqAdmin.php">Retour aux faq</a> </p>
     </body>
 </html>

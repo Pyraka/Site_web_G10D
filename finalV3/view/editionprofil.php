@@ -1,12 +1,7 @@
 <?php include "../model/configuration.php";
  if(isset($_SESSION['id'])) 
 {
-
-      require('../controller/reqAdmin/req.modifyProfile.php');
-     
-
-
-       ?>
+      require('../controller/reqUser/req.editionProfil.php'); ?>
 
    <html>
       <head>
@@ -19,7 +14,7 @@
             <div class="formulaireColonnes">
                <form method="POST" action="" enctype="multipart/form-data">
                   <div class="colonne1">
-                     <h3>modification des informations personnelles</h3>
+                     <h3>Modification des informations personnelles</h3>
                      <label for="newfirstname">Prénom :</label>
                      <input type="text" name="newfirstname" placeholder="Prénom" value="<?php echo $user['firstName']; ?>" /><br /><br />
                      <label for="newlastname">Nom :</label>
@@ -34,8 +29,9 @@
                      <input type="radio" name="newgender" value="autre"/> autre <br/><br/>
                   </div>
                   <div class="colonne2">
-                     <h3>modification du mot de passe</h3>
-                     
+                     <h3>Modification du mot de passe</h3>
+                     <label>Ancien mot de passe :</label>
+                     <input type="password" name="oldmdp" placeholder="Mot de passe"/><br /><br />
                      <label for="newmdp1">Nouveau mot de passe :</label>
                      <input type="password" id="userPassword" name="newmdp1" placeholder="Mot de passe"/><br /><br />
                      <label for="newmdp2">Confirmation - mot de passe :</label>
@@ -45,14 +41,14 @@
                      <?php if(isset($msg)) { echo $msg; } ?>
                   </div>
                   <div class="colonne3">
-                     <h3>modification de la photo</h3>
+                     <h3>Modification de la photo</h3>
                      <p>photo actuelle :</p>
                      <img src="<?php echo $imageprofile['imageDirectory']; ?>" id="photoProfil"/>
                      <br/><br/>
                      <input type="file" name="photoProfil"/> <br/><br/>
                   </div>
-                  <input type="submit" value="Mettre à jour le profil !" id="endEdition"/>
-                  <a href="manageUser.php" class="linkEdProfil">Revenir à la gestion des utilisateurs</a>
+                  <input type="submit" value="Mettre à jour mon profil !" id="endEdition"/>
+                  <a href="<?php echo 'profil.php?id='.$_SESSION['id'];?>" class="linkEdProfil">Revenir au profil</a>
                </form> 
             </div>
             <script type="text/javascript" src="../js/checkPassword.js"></script>

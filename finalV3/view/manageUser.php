@@ -40,57 +40,52 @@ $admins = $bdd->query('SELECT * FROM user WHERE allow = 2 ORDER BY idUser DESC')
     <title>Administration utilisateur</title>
     <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
-
         <?php require "templates/header.php"; ?>
         <h2 class="manageUsers" > Utilisateurs </h2>
         <div class = "underline"> </div> 
         <div class="firstAdmin">
-
-        <ul class="pucesUser">
-        <a> <strong>Clients</strong></a>
-        <br></br>
-
-            <?php while($m = $members->fetch()) { ?>
-            <li>
-            <?= $m['email'] ?> - <a href="modifyProfile.php?id=<?= $m['idUser'] ?>">Modifier</a>
-            <?php
-            if (isban($m['idUser'])){
-                ?>
-                - (banni)
-                - <a href="manageUser.php?deban=<?= $m['idUser'] ?>">Débannir </a>
-                
-                <?php
-            }else{
-                ?>
-                - <a href="manageUser.php?ban=<?= $m['idUser'] ?>">Bannir </a>
-                - <a href="messagerie.php?id=<?= $m['idUser'] ?>">Message</a>
-                <?php
-            }
-            ?>
+            <ul class="pucesUser">
             
-            </li>
+            <h3> <strong>Clients</strong></h3>
+                <?php while($m = $members->fetch()) { ?>
+                <li>
+                <?= $m['email'] ?> - <a class="editAdmin" href="modifyProfile.php?id=<?= $m['idUser'] ?>">Modifier</a>
+                <?php
+                if (isban($m['idUser'])){
+                    ?>
+                    - (banni)
+                    - <a class="editAdmin" href="manageUser.php?deban=<?= $m['idUser'] ?>">Débannir </a>
+                    
+                    <?php
+                }else{
+                    ?>
+                    - <a class="editAdmin" href="manageUser.php?ban=<?= $m['idUser'] ?>">Bannir </a>
+                    - <a class="editAdmin" href="messagerie.php?id=<?= $m['idUser'] ?>">Message</a>
+                    <?php
+                }
+                ?>
+                
+                </li>
              
             <?php } ?>
-        </ul>
+            
         
-        <ul>
-        <a> <strong>Gestionnaires</strong></a>
-        <br></br>
+            
+        <h3> <strong>Gestionnaires</strong></h3>
             <?php while($m = $managers->fetch()) { ?>
             <li>
-            <?= $m['email'] ?> - <a href="modifyProfile.php?id=<?= $m['idUser'] ?>">Modifier</a>
+            <?= $m['email'] ?> - <a class="editAdmin" href="modifyProfile.php?id=<?= $m['idUser'] ?>">Modifier</a>
             <?php
             if (isban($m['idUser'])){
                 ?>
                 - (banni)
-                - <a href="manageUser.php?deban=<?= $m['idUser'] ?>">Débannir </a>
+                - <a class="editAdmin"href="manageUser.php?deban=<?= $m['idUser'] ?>">Débannir </a>
                 
                 <?php
             }else{
                 ?>
-                - <a href="manageUser.php?ban=<?= $m['idUser'] ?>">Bannir </a>
-                - <a href="messagerie.php?id=<?= $m['idUser'] ?>">Message</a>
+                - <a class="editAdmin"href="manageUser.php?ban=<?= $m['idUser'] ?>">Bannir </a>
+                - <a class="editAdmin"href="messagerie.php?id=<?= $m['idUser'] ?>">Message</a>
                 
                 <?php
             }
@@ -100,20 +95,20 @@ $admins = $bdd->query('SELECT * FROM user WHERE allow = 2 ORDER BY idUser DESC')
             <?php } ?>
         </ul>
         <ul>
-        <a> <strong>Admins</strong></a>
-        <br></br>
+        <h3> <strong>Admins</strong></h3>
             <?php while($m = $admins->fetch()) { ?>
             <li>
             <?= $m['email'] ?>
-            - <a href="messagerie.php?id=<?= $m['idUser'] ?>">Message</a>
+            - <a class="editAdmin" href="messagerie.php?id=<?= $m['idUser'] ?>">Message</a>
             </li>
             <?php } ?>
         </ul>
-
-        <h2><a href="createAdmin.php">Ici</a> pour créer un utilisateur manellement </h2>
-        
+        </div>
+        <div class="secondAdmin">
+        <h2><a class="box-nous" href="createAdmin.php">Ici</a> pour créer un utilisateur manellement </h2>
+        </div>
 
 <script type="text/javascript" src="../js/checkPassword.js"></script>
 
 
-<?php //require "templates/footer.php"; ?>
+<?php require "templates/footer.php"; ?>

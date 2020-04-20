@@ -56,7 +56,7 @@ if(isset($_GET['ban'])){
 // fonction isBan en bas de la page
 
 
-   if (isBan($_GET['ban'])==true){ echo "Cette utilisateur est déjà bannis.";}
+   if (isBan($_GET['ban'])==true){;}
 
    //bannissment d'un utilisateur
 
@@ -70,7 +70,7 @@ if(isset($_GET['ban'])){
 //débannissmenet d'un utilisateur
 
     else if(isset($_GET['deban'])){
-    if (isBan($_GET['deban'])!== true){echo "Cette utilisateur est déjà non bannis.";}
+    if (isBan($_GET['deban'])!== true){}
     else{
     $deban = (int) $_GET['deban'];
     $req = $bdd->prepare('DELETE FROM ban WHERE idUser = ?');

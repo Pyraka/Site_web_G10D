@@ -40,6 +40,8 @@ if (!empty($_POST)){
     </head>
     <?php require('templates/header.php'); ?>
     <h2 class="titleFaq">Ajouter question</h2>
+    <div class="underline"></div>
+<div class="faqbody">
     <form method="post">
 
         <p> <strong>AJOUTER UNE QUESTION</strong><br/><br>
@@ -64,6 +66,7 @@ if (!empty($_POST)){
     </form>
 
 
-    <p><a href="faqAdmin.php">Retour aux faq</a> </p>
+    <p><a class="box-nous" href="faqAdmin.php">Retour aux faq</a> </p>
+    </div>
     </body>
 </html>

@@ -23,33 +23,36 @@ $produits = $bdd->query('SELECT * FROM keyproduct');
 
 
 <!DOCTYPE html>
-<html>
-   <head>
-      <meta charset="utf-8" />
-      <title>Administration clé produit</title>
-      <link rel="stylesheet" href="css/style.css" />
+<html lang="fr">
 
-   </head>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Administration clé produit </title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
   <?php require "templates/header.php";  ?>
       <h2 class="titleKeys"> Gestion des clés </h2>
       <div class="underline"></div>
       <div class=" firstkey ">
-         <ul class="listKey">
+      
+         <ul>
+         <h3> Clés </h3>
             <?php while($p = $produits->fetch()) { ?>
-            <li id="idcleprod"> <?= $p['keyProd'] ?> - <a href="manageKey.php?supprime=<?= $p['idKey'] ?>">Supprimer</a></li>
+             <li id="idcleprod"> Clé : <?= $p['keyProd'] ?> - <a href="manageKey.php?supprime=<?= $p['idKey'] ?>">Supprimer</a></li>
             <?php } ?>
          </ul> 
-         <br /><br />
       </div>
       
-      <div class="secondKey">
-         <form method="post" id="form"> 
+      <div class="secondKey"> </div>
+         <form method="post"> 
             <input type="int" name="keyProd" placeholder="XXXXXXXX"> Clé produit   
             <input type="submit" name="submit" value="Ajouter">
          </form>
-            <br /><br />
-         <a href="index.php"> Retour à la page d'accueil</a>
-            </div>
+         <br>
+         <a class="box-register" href="index.php"> Retour à la page d'accueil</a>
+           
 
 <?php require "templates/footer.php"; ?>
 

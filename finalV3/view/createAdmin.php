@@ -81,7 +81,7 @@ if (isset($_POST['submit']) && isset($_POST['firstName']) AND isset($_POST['last
 </head>
 <?php require("templates/header.php") ?>
 <form method="POST">
-            <div class="secondAdmin">
+            <div class="firstPart">
 
                 <strong> Ajouter un utilisateur manuellement </strong>
                 <label for="firstName">Prénom</label>
@@ -98,7 +98,7 @@ if (isset($_POST['submit']) && isset($_POST['firstName']) AND isset($_POST['last
                 <input type="radio" name="gender" value="Autre"> Autre 
                 </div>
 
-                <div class="thirdAdmin">
+                <div class="secondPart">
                 <label for="userPassword">Mot de passe</label>
                 <input type="password" name="userPassword" id="userPassword" placeholder="Mot de passe" required >
                 <label for="mdp_verif">Vérification du mot de passe</label>
@@ -108,14 +108,14 @@ if (isset($_POST['submit']) && isset($_POST['firstName']) AND isset($_POST['last
                 <input type="int" name="productKey" id="productKey" placeholder="XXXXXXXX"> 
                 <br></br>
                 <input type="submit" name="submit" value="Ajouter manuellement">
-               
+                </div>
         </form>
         <br></br>
-            <a href="index.php"><strong> Retour à l'accueil</strong></a>
+            <a class="box-register"href="manageUser.php"><strong> Retour à la page précédente</a>
             <br></br>
-            <a href="manageUser.php"><strong> Retour à la page précédente</a>
-            <a href="index.php"><strong> Retour à l'accueil</strong></a>
-            </div>
+            <a class="box-register" href="index.php"><strong> Retour à l'accueil</strong></a>
+            
+            
 
 <script type="text/javascript" src="../js/checkPassword.js"></script>
 

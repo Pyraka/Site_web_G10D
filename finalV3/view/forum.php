@@ -13,7 +13,9 @@
       require('templates/header.php');    
       ?>
       <div class="bodyForum">
-      <h1 style="text-align: center;">Forum</h1>
+      <h1 id="titleForum">Forum</h1>
+      <div class="underline"></div>
+
       <?php
       if (isset($_SESSION['id'])){
         ?>
@@ -25,16 +27,18 @@
       }
       else{
         ?>
-        <label>Veuillez vous connecter si vous souhaiter créer un nouveau sujet <a href="connect.php"> se connecter</a></label>
+        <br>
+        <label id="coToGo">Veuillez vous connecter si vous souhaiter créer un nouveau sujet <a class="box-register" href="connect.php"> se connecter</a></label>
+        <br>
 
         <?php
       }
       ?>
       
       <div class="tableforum" >
-          <table style="margin-top: 10px;">
+          <table>
               <div class="contenuforum" >
-                  <tr style="background:linear-gradient(#8BACED,white)">
+                  <tr class ="topCol">
                       <th>Titre</th>
                       <th>Date</th>
                       <th>Par</th>
@@ -43,8 +47,8 @@
               foreach ($reponse as $key) {
                   ?>
                   <tr >
-                      <td style="text-decoration: none;text-align: center;font-family: 'Franklin Gothic Medium'">
-                          <a href="topic.php?id=<?=$key['idTopic']?>"><?= $key['title'] ?></a>
+                      <td id="idTopic">
+                          <a class="textTopic" href="topic.php?id=<?=$key['idTopic']?>"><?= $key['title'] ?></a>
                       </td>
                       <td>
                           <?= $key['date_c'] ?>
