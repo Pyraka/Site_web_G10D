@@ -1,3 +1,0 @@
-AuthName "Contenu restreint"
-AuthType Basic
-AuthUserFile "C:\wamp64\www\APP\adminSpace\secure\.htpasswd"
