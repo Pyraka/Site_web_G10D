@@ -19,7 +19,7 @@
             <div class="formulaireColonnes">
                <form method="POST" action="" enctype="multipart/form-data">
                   <div class="colonne1">
-                     <h3>modification des informations personnelles</h3>
+                     <h3>Modification des informations personnelles</h3>
                      <label for="newfirstname">Prénom :</label>
                      <input type="text" name="newfirstname" placeholder="Prénom" value="<?php echo $user['firstName']; ?>" /><br /><br />
                      <label for="newlastname">Nom :</label>
@@ -34,7 +34,7 @@
                      <input type="radio" name="newgender" value="autre"/> autre <br/><br/>
                   </div>
                   <div class="colonne2">
-                     <h3>modification du mot de passe</h3>
+                     <h3>Modification du mot de passe</h3>
                      
                      <label for="newmdp1">Nouveau mot de passe :</label>
                      <input type="password" id="userPassword" name="newmdp1" placeholder="Mot de passe"/><br /><br />
@@ -45,7 +45,7 @@
                      <?php if(isset($msg)) { echo $msg; } ?>
                   </div>
                   <div class="colonne3">
-                     <h3>modification de la photo</h3>
+                     <h3>Modification de la photo</h3>
                      <p>photo actuelle :</p>
                      <img src="<?php echo $imageprofile['imageDirectory']; ?>" id="photoProfil"/>
                      <br/><br/>
