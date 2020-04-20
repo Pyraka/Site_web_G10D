@@ -36,8 +36,10 @@ if (isset($_POST['mail']) AND isset($_POST['reflex']) AND isset($_POST['reproduc
 	<meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
 	<?php require("templates/header.php"); ?>
+	<h2 class="createTitle"> Test </h2>
+<div class="underline"></div>
+<div class="centerResults">
 	<form method="POST">
 		<label for="mail">Mail du client :</label>
 		<input type="text" name="mail" placeholder="abc@xyz.com" />
@@ -55,7 +57,7 @@ if (isset($_POST['mail']) AND isset($_POST['reflex']) AND isset($_POST['reproduc
 		 	echo $msg;
 		 } ?>
 	</form>
+	</div>
+
 	<a href="index.php" class="linkBack">Revenir à l'accueil</a>
 	<?php require("templates/footer.php"); ?>
-</body>
-</html>

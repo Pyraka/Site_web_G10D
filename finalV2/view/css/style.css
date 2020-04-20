@@ -1,4 +1,4 @@
-label {
+﻿label {
   display: block;
   margin: 5px 0;
 }
@@ -910,4 +910,16 @@ button[type="submit"]{
 #coToGo{
 	margin-top: 1em;
 	margin-bottom: 1em;
+}
+
+.centerResults{	
+	width: 50%;
+	float: left;
+	margin-left: 20em;
+	font-size: 1.2em;
+}
+
+#accRes{
+	margin-left: 22.5em;
+
 }
