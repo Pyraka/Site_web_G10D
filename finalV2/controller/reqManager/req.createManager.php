@@ -58,7 +58,7 @@ if (isset($_POST['submit']) && isset($_POST['firstName']) AND isset($_POST['last
            
 
             
-/*
+
 
                  //on envoie un mail de confirmartion
             $head="MIME-Version: 1.0\r\n";
@@ -77,7 +77,7 @@ if (isset($_POST['submit']) && isset($_POST['firstName']) AND isset($_POST['last
             ';
     
             mail($utilisateur['email'], "CONTACT - medy-sys.com", $message, $head);
-    */
+    
             header("Location: profil.php?id=".$_SESSION['id']);
     
             }

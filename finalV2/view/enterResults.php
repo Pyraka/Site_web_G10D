@@ -44,13 +44,14 @@ if (isset($_POST['mail']) AND isset($_POST['reflex']) AND isset($_POST['reproduc
 		<label for="mail">Mail du client :</label>
 		<input type="text" name="mail" placeholder="abc@xyz.com" />
 		<label for="bpm">Test de rythme cardiaque :</label>
-		<input type="number" name="bpm" min="40" max="150" />
-		<label for="temperature">Test de température :</label>
-		<input type="number" name="temperature" min="35" max="45" />
+		<input type="number" name="bpm" min="40" max="150" /> (en BPM)
+		<label for="temperature">Test de température :</label> 
+		<input type="number" name="temperature" min="35" max="45" /> (en °C)
 		<label for="reflex">Test de réflexes visuels :</label>
-		<input type="number" name="reflex" min="0" max="2000" />
+		<input type="number" name="reflex" min="0" max="2000" /> (en ms)
 		<label for="reproduction">Test de reproduction sonore :</label>
-		<input type="number" name="reproduction" min="0" max="100" />
+		<input type="number" name="reproduction" min="0" max="100" /> (note en %)
+		<br><br>
 		<input type="submit" name="submit" value="Enregistrer les résultats">
 		<?php
 		if (isset($_POST['submit'])) {
