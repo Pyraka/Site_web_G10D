@@ -1,0 +1,36 @@
+
+
+filtre recherche multicritere:  
+https://www.youtube.com/watch?v=H2ISgzBgcA0
+
+
+bosser sur le lien de confirmation
+
+mail avec l'hergeur
+
+inserer la recherche quelque part
+
+
+mettre un isset au debut de listresults
+mettre une verif de sécurité dans listresults pour voir si le mec qui accede à bien les droits
+
+verif que l'importation de fichiers marche dans editProfile avec l'hebergeur
+
+faire un hashage pour le mot de passe et ne pas le laisse en MD5. (normalment j'ai mis qq HTMLSPECIALCHARS par ci par là déjà).
+
+
+permission cookies
+
+mot de passe oublié avec mail
+
+responsive
+
+ajouter systeme de pagination pour le modifyProfile
+
+redirection dans le htaccess (router)
+
+refaire la bdd pour avoir des trucs cleans
+
+bosser sur un vrai truc derrière le lien de confirmation
+
+il manque la gestion du forum
