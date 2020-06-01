@@ -44,7 +44,6 @@ $produits = $bdd->query('SELECT * FROM keyproduct');
             <?php } ?>
          </ul> 
       </div>
-      <br><br><br>
       
       <div class="secondKey"> </div>
          <form method="post"> 

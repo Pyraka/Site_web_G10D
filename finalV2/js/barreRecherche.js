@@ -1,15 +1,33 @@
 $(document).ready(function(){
+
+
 		$('#champRechercheMessagerie').keyup(function(){
+
+			var contextName = $(this).context.name;
 
 			$('#result-search').html('');
 
 			var utilisateur = $(this).val();
+			var url;
+
+			switch (contextName){
+				case 'input_search_messenger':
+					url = 'recherche_utilisateur.php';
+					break;
+				case 'mail':
+					url = 'recherche_utilisateur_enterResults.php';
+					break;
+				
+				default:
+					console.log('Erreur, veuillez verifier le nom du champ de recherche');
+
+			}
 
 			if (utilisateur != ""){
 
 				$.ajax({
 					type: 'GET',
-					url: 'recherche_utilisateur.php',
+					url: url,
 					data: 'userSearch=' + encodeURIComponent(utilisateur),
 					success: function(data){
 						if(data != ""){
@@ -24,6 +42,7 @@ $(document).ready(function(){
 				});
 
 			}
+
 
 		});
 	});

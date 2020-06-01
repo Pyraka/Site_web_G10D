@@ -1,16 +1,9 @@
 <?php
 require "../model/configuration.php";
-//require "common.php";
-/*try
-{
-	$connection = new PDO($dsn, $username, $password, $options); // accès à la base de données utilisateur
-}
-catch (Exception $e)
-{
-        die('Erreur : ' . $e->getMessage());
-}*/?>
+?>
 
 <head>
+	<link rel="stylesheet" href="css/style.css" />
 	<script src="../dist/chart.js"></script>
 </head>
 
@@ -56,9 +49,9 @@ while ($test = $reqTest->fetch()) {?>
 
 	    // The data for our dataset
 		   		data: {
-		        labels: ['BPMAverage', 'temperatureAverage', 'reactionTime', 'soundReproductionQuality'],
+		        labels: ['Rythme cardiaque', 'Température', 'Temps de réaction', 'Qualité de reproduction sonore'],
 		        	datasets: [{
-		            	label: 'resultats',
+		            	label: 'résultats',
 		            	backgroundColor: '#2B3087',
 		            	borderColor: '#2B3087',
 		            	data: [<?php echo $test['BPMAverage']?>, <?php echo $test['temperatureAverage']?>, <?php echo $test['reactionTime']?>, <?php echo $test['soundReproductionQuality']?>]

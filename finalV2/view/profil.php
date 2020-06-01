@@ -18,15 +18,15 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) { require('../controller/req.profil.p
       <div align="center">
          <h2>Profil de <?php echo $userinfo['firstName'], " ", $userinfo['lastName']; ?></h2>
          <img src="<?php echo $imageProfil['imageDirectory'] ?>" id="photoProfil"/>
-         <p>Mail : <?php echo $userinfo['email']; ?></p>
+         <p>Mail = <?php echo $userinfo['email']; ?></p>
          
-         <p>Date de naissance : <?php echo $userinfo['date_b']; ?></p>
+         <p>Date de naissance = <?php echo $userinfo['date_b']; ?></p>
          
-         <p>Age : <?=$userinfo['age']?> ans</p>
+         <p>Age = <?=$userinfo['age']?> ans</p>
          
-         <p>Genre : <?php echo $userinfo['gender']; ?></p>
+         <p>Genre = <?php echo $userinfo['gender']; ?></p>
         
-         <p>Membre depuis : <?= $userinfo['date_s'] ?></p>
+         <p>Membre depuis = <?= $userinfo['date_s'] ?></p>
          
          <?php
          if(isset($_SESSION['id']) AND $userinfo['idUser'] == $_SESSION['id']) {

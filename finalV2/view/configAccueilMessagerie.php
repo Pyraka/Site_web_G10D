@@ -125,7 +125,7 @@ function attribueReceiverOuWritter($id){
 
 	
 	<div class="barreRechercheMessagerie">
-		<input type="text" placeholder="Rechercher un contact..." class="champRechercheMessagerie" id="champRechercheMessagerie" value="">
+		<input type="text" placeholder="Rechercher un contact..." class="champRechercheMessagerie" id="champRechercheMessagerie" value="" name="input_search_messenger">
 	</div>
 	<div>
 		<div id="result-search"></div>

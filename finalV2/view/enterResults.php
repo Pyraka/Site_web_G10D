@@ -1,32 +1,6 @@
 <?php 
 include("../model/configuration.php");
-if (isset($_POST['mail']) AND isset($_POST['reflex']) AND isset($_POST['reproduction']) AND isset($_POST['bpm']) AND isset($_POST['temperature']) AND 
-	!empty($_POST['mail']) AND !empty($_POST['reflex']) AND !empty($_POST['reproduction']) AND !empty($_POST['bpm']) AND !empty($_POST['temperature'])) {
-	 try {
-        // on vérifie que l'email existe dans la bdd
-        $requser = $bdd->prepare("SELECT idUser FROM user WHERE email = ?");
-        $requser->execute(array($_POST['mail']));
-        $userexist = $requser->rowCount();
-        if($userexist != 0) {
-            // on ajoute les résultats dans la bdd
-            $user = $requser -> fetch();
-            $reqtest = $bdd->prepare("INSERT INTO test(`reactionTime`, `soundReproductionQuality`, `BPMAverage`, `temperatureAverage`, `dateTest`, `idUser`) VALUES(?,?,?,?,?,?)");
-            $reqtest->execute(array($_POST['reflex'], $_POST['reproduction'], $_POST['bpm'], $_POST['temperature'], date("Y-m-d H:i:s"), $user['idUser'] ));
-
-            $msg = "Les résultats ont bien été ajouté.";
-        }
-        else{
-        	$msg = "L'adresse mail est invalide !";
-        }
-
-        
-        
-    }catch (PDOException $error) {
-        echo $error->getMessage();
-    }
-} else {
-	$msg = "Remplissez tous les champs !";
-}
+require("../controller/reqManager/req.enterResults.php");
 ?>
 
 <!DOCTYPE html>
@@ -35,30 +9,56 @@ if (isset($_POST['mail']) AND isset($_POST['reflex']) AND isset($_POST['reproduc
 	<title>Entrer des résultats</title>
 	<meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    ﻿<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    ﻿<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    ﻿<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="../js/barreRecherche.js"></script>
 </head>
+<body>
 	<?php require("templates/header.php"); ?>
-	<h2 class="createTitle"> Test </h2>
-<div class="underline"></div>
-<div class="centerResults">
-	<form method="POST">
-		<label for="mail">Mail du client :</label>
-		<input type="text" name="mail" placeholder="abc@xyz.com" />
-		<label for="bpm">Test de rythme cardiaque :</label>
-		<input type="number" name="bpm" min="40" max="150" /> (en BPM)
-		<label for="temperature">Test de température :</label> 
-		<input type="number" name="temperature" min="35" max="45" /> (en °C)
-		<label for="reflex">Test de réflexes visuels :</label>
-		<input type="number" name="reflex" min="0" max="2000" /> (en ms)
-		<label for="reproduction">Test de reproduction sonore :</label>
-		<input type="number" name="reproduction" min="0" max="100" /> (note en %)
-		<br><br>
-		<input type="submit" name="submit" value="Enregistrer les résultats">
-		<?php
-		if (isset($_POST['submit'])) {
-		 	echo $msg;
-		 } ?>
-	</form>
-	</div>
-
-	<a href="index.php" class="linkBack">Revenir à l'accueil</a>
 	<?php require("templates/footer.php"); ?>
+	<?php $finTest = false;?>
+
+	
+	<div id="selectUser">
+		<p>Entrez l'adresse mail de la personne qui doit passer le test. Validez pour que les tests commencent.</p>
+			<form method="POST">
+				<label for="mail">Mail du client :</label>
+				<input type="text" name="mail" placeholder="abc@xyz.com" class="champRechercheMessagerie" id="champRechercheMessagerie"/>
+			    <input type="submit" name="submit" value="Valider">
+		    </form>
+		    <br/>
+		    <div id="result-search"></div>
+
+		    <?php
+			if (isset($_POST['submit']) AND isset($msg)) {
+			 	echo $msg;
+	        } ?>
+    </div>
+
+    <?php
+       if($userexist != 0) { ?>
+        	<script src="../js/chronometre"></script>
+       <?php } ?>
+
+	<?php 
+		if (isset($userMail)) { ?>
+			<p>Une fois le test terminé, cliquez <a href="<?php echo "confirmResults.php?mail=" .$userMail; ?>" >ici</a> pour confirmer les résultats</p>
+	<?php } ?>
+
+</body>
+<script type="text/javascript">
+	function clickLinks(email){
+		document.getElementById('champRechercheMessagerie').value = email;
+		document.getElementById('result-search').remove();
+
+		var newDiv = document.createElement("div");
+		newDiv.id="result-search";
+		document.body.append(newDiv);
+
+
+
+	}
+</script>
+</html>

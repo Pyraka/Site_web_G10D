@@ -486,10 +486,9 @@ button[type="submit"]{
 
 .tableau {
 	border-collapse: collapse;
-	position: relative;
-	position: relative;
+	position: absolute;
 	left: 32em;
-	bottom: 5em;
+	bottom: 30em;
 }
 
 .tableau caption {
@@ -505,6 +504,16 @@ button[type="submit"]{
 .bordureTableau th {
 	padding-left : 0.5em; 
 	padding-right: 0.5em;
+}
+
+.dispGraph{
+	color: black;
+	text-decoration: none;
+}
+
+.dispGraph:hover{
+	color: #2B3087;
+	font-weight: bold;
 }
 
 #noResult {
