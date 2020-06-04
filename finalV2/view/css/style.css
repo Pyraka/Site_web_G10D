@@ -186,14 +186,11 @@ footer
 
 .ourPhotos
 {
-	margin-left: 14em;
-	margin-right: 14em;
-	margin-top: 2em;
 	display: flex;
 	justify-content: space-around;
 }
 
-.ourPhotos img,figcaption
+.ourPhotos img
 {
 	width: 7em;
 	height: 10.5em;
@@ -201,13 +198,8 @@ footer
 	font-size: 1em;
 }
 
-#PresentationMedisys
+.PresentationMedisys
 {
-	margin-top: 3em;
-	margin-left: 5.4em;
-	margin-right: 5.4em;
-	position: relative;
-	bottom :8em;
 	font-size: 1.5em;
 }
 
@@ -593,7 +585,6 @@ button[type="submit"]{
 }
 .boutonparticiper button{
 	margin-left: 43%;
-	transform: translateX(-50%);
 	background-color: #5b7e88;
 }
 .creersujet a{
@@ -636,7 +627,7 @@ button[type="submit"]{
 	border-radius: 10px;
 }
 
-.questiontopic button,.boutonparticiper button {
+.questiontopic button,.boutonparticiper button, .boutonparticiper a {
 	background-color: #858baf; 
 	border: none;
 	color: white;

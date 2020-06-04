@@ -56,7 +56,7 @@ else
 							
 
 							<li>
-								<a href="forum.php">
+								<a href="manageForum.php">
 								<img src="images/logoForum.png" class="logoMenu" />
 								<span class="centerLogo">Forum</span></a>
 							</li>

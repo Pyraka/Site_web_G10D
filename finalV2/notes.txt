@@ -6,7 +6,6 @@ https://www.youtube.com/watch?v=H2ISgzBgcA0
 
 bosser sur le lien de confirmation
 
-mail avec l'hergeur
 
 inserer la recherche quelque part
 
@@ -29,8 +28,6 @@ ajouter systeme de pagination pour le modifyProfile
 
 redirection dans le htaccess (router)
 
-refaire la bdd pour avoir des trucs cleans
 
 bosser sur un vrai truc derrière le lien de confirmation
 
-il manque la gestion du forum
