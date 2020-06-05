@@ -20,4 +20,4 @@ include "configAccueilMessagerie.php";?>
 
 	
 	<script src="../js/barreRecherche.js"></script>
-	<?php require('templates/footer.php');?>
+	<?php //require('templates/footer.php');?>

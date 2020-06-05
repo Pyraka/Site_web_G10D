@@ -16,7 +16,7 @@
 <h2 class="createTitle">S'inscrire</h2>
 <div class="underline"></div>   
 
-<form method="post" class="formCreate">
+<form method="post" class="formCreate" onsubmit="return isSubmittable()">
     <div class="firstPart">
         <label for="firstName">Prénom</label>
         <input type="text" name="firstName" id="firstName" placeholder="Prénom" required>
@@ -24,8 +24,10 @@
         <input type="text" name="lastName" id="lastName" placeholder="Nom" required>
         <label for="email">Adresse email</label>
         <input type="email" name="email" id="email" placeholder="Adresse email" required>
+        <span id='messageEmail'></span>
         <label for="birthDate">Date de naissance</label>
         <input type="date" name="birthDate" id="birthDate" placeholder="dd/mm/aa" required>
+        <span id='messageDate'></span>
         <label for="gender">Genre</label>
         <input type="radio" name="gender" value="Homme"> Homme
         <input type="radio" name="gender" value="Femme"> Femme
@@ -34,10 +36,12 @@
     <div class="secondPart">
         <label for="userPassword">Mot de passe</label>
         <input type="password" name="userPassword" id="userPassword" placeholder="Mot de passe" required>
+        <span id='messagePass'></span>
         <label for="mdp_verif">Vérification du mot de passe</label>
         <input type="password" name="mdp_verif" id="mdp_verif" placeholder="Mot de passe" required>
         <span id='message'></span> <br></br>
         <input type="submit" name="submit" value="S'inscrire">
+        <span id='messageForm'></span>
     </div>
 </form>
 </br>

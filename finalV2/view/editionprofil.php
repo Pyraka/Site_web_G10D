@@ -20,9 +20,11 @@
                      <label for="newlastname">Nom :</label>
                      <input type="text" name="newlastname" placeholder="Nom" value="<?php echo $user['lastName']; ?>" /><br /><br />
                      <label for="newmail">Mail :</label>
-                     <input type="text" name="newmail" placeholder="Mail" value="<?php echo $user['email']; ?>" /><br /><br />
+                     <input type="text" name="newmail" placeholder="Mail" id="email" value="<?php echo $user['email']; ?>" /><br /><br />
+                     <span id='messageEmail'></span>
                      <label for="newbirthdate"> Date de naissance :</label>
-                     <input type="date" name="newbirthdate" value="<?php echo $user['birthDate']; ?>"/><br/><br/>
+                     <input type="date" name="newbirthdate" id="birthDate" value="<?php echo $user['birthDate']; ?>"/><br/><br/>
+                     <span id='messageDate'></span>
                      <label for="newgender">genre :</label>
                      <input type="radio" name="newgender" value="homme"/> homme
                      <input type="radio" name="newgender" value="femme"/> femme
@@ -34,6 +36,7 @@
                      <input type="password" name="oldmdp" placeholder="Mot de passe"/><br /><br />
                      <label for="newmdp1">Nouveau mot de passe :</label>
                      <input type="password" id="userPassword" name="newmdp1" placeholder="Mot de passe"/><br /><br />
+                     <span id='messagePass'></span>
                      <label for="newmdp2">Confirmation - mot de passe :</label>
                      <input type="password" id="mdp_verif" name="newmdp2" placeholder="Confirmation du mot de passe"/>
                      <span id='message'></span>
@@ -48,6 +51,7 @@
                      <input type="file" name="photoProfil"/> <br/><br/>
                   </div>
                   <input type="submit" value="Mettre à jour mon profil !" id="endEdition"/>
+                  <span id='messageForm'></span>
                   <a href="<?php echo 'profil.php?id='.$_SESSION['id'];?>" class="linkEdProfil">Revenir au profil</a>
                </form> 
             </div>
